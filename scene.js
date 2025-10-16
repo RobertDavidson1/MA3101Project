@@ -29,10 +29,16 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement); // Enable
 controls.enableDamping = true; // Enable damping for smoother movement
 controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max camera distance to (30,30,30)
 
-// Scene
-scene.add(createAxes());
-scene.add(createStars(1000)); // Create 1000 stars
-scene.add(createSphere());
+// Scene elements
+axes = createAxes();
+stars = createStars(1000);
+sphere = createSphere();
+
+// Add scene elements to the scene
+scene.add(axes);
+scene.add(stars);
+scene.add(sphere);
+
 // Animation loop
 function animate() {
     controls.update(); // smooth camera movement
