@@ -1,10 +1,3 @@
-// Helper function to get CSS root color variables
-function getColor(cssVar) {
-    return getComputedStyle(document.documentElement)
-        .getPropertyValue(cssVar)
-        .trim();
-}
-
 // Basic three.js setup
 const container = document.getElementById('app');
 const scene = new THREE.Scene();
@@ -39,6 +32,7 @@ controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max came
 // Scene
 scene.add(createAxes());
 scene.add(createStars(1000)); // Create 1000 stars
+scene.add(createSphere());
 // Animation loop
 function animate() {
     controls.update(); // smooth camera movement
