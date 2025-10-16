@@ -38,7 +38,7 @@ controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max came
 
 // Scene
 scene.add(createAxes());
-
+scene.add(createStars(1000)); // Create 1000 stars
 // Animation loop
 function animate() {
     controls.update(); // smooth camera movement
