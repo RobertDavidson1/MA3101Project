@@ -39,6 +39,7 @@ plane = createPlane(params.showPlane);
 sphere = createSphere(params.showSphere);
 circleCenter = createCircleCenter(params.showCircleCenter);
 circle = createCircle(params.planeHeight, params.showCircle);
+p_t = pointOnCircle(params.planeHeight, params.showCircle, 0);
 
 // Add scene elements to the scene
 scene.add(axes);
@@ -47,6 +48,7 @@ scene.add(plane);
 scene.add(sphere);
 scene.add(circleCenter);
 scene.add(circle);
+scene.add(p_t);
 
 // Animation loop
 function animate() {
