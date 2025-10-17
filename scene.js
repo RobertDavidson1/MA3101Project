@@ -32,11 +32,13 @@ controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max came
 // Scene elements
 axes = createAxes();
 stars = createStars(1000);
+plane = createPlane();
 sphere = createSphere();
 
 // Add scene elements to the scene
 scene.add(axes);
 scene.add(stars);
+scene.add(plane);
 scene.add(sphere);
 
 // Animation loop
