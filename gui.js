@@ -60,7 +60,7 @@ VisbilityFolder.addInput(params, 'showCircle', {
     // If turned back on, re-create the circle with the new plane height
     if (ev.value === true) {
         scene.remove(circle);
-        circle = createCircle(params.planeHeight);
+        circle = createCircle(params.planeHeight, params.showCircle);
         scene.add(circle);
     }
 });
@@ -76,9 +76,9 @@ ControlsFolder.addInput(params, 'planeHeight', {
     circleCenter.position.z = ev.value;
 
     // Only update the circle if its visible - avoids uncessary re-rendering
-    if (circle.visible === true) {
+    if (circle.visible == true) {
         scene.remove(circle);
-        circle = createCircle(ev.value);
+        circle = createCircle(ev.value, params.showCircle);
         scene.add(circle);
     }
 });
