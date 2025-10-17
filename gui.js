@@ -56,8 +56,12 @@ ControlsFolder.addInput(params, 'planeHeight', {
     label: 'Plane Height',
     min: -1.0,
     max: 1.0,
-    step: 0.1,
+    step: 0.01,
 }).on('change', (ev) => {
     plane.position.z = ev.value;
     circleCenter.position.z = ev.value;
+
+    scene.remove(circle);
+    circle = createCircle(ev.value);
+    scene.add(circle);
 });
