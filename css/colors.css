@@ -1,8 +1,58 @@
 :root {
-    --gray-900: #141414;
-    --gray-800: #1c1d1d;
-    --gray-200: #878787;
-    --gray-100: #cccccc;
+    /* ShadCN -500 Colors */
+    /* https://ui.shadcn.com/colors */
+    --orange: #f97316;
+    --amber: #f59e0b;
+    --yellow: #eab308;
+    --lime: #84cc16;
+    --green: #22c55e;
+    --emerald: #10b981;
+    --teal: #14b8a6;
+    --cyan: #06b6d4;
+    --sky: #0ea5e9;
+    --blue: #3b82f6;
+    --indigo: #6366f1;
+    --violet: #8b5cf6;
+    --purple: #a855f7;
+    --fuchsia: #d946ef;
+    --pink: #ec4899;
+    --rose: #f43f5e;
 
-    --red-500: #dc2626;
+    /* ShadCN Neutral */
+    /* https://ui.shadcn.com/colors */
+    --neutral-950: #0a0a0a;
+    --neutral-900: #171717;
+    --neutral-800: #262626;
+    --neutral-700: #404040;
+    --neutral-600: #525252;
+    --nuetral-500: #737373;
+    --nuetral-400: #a3a3a3;
+    --nuetral-300: #d4d4d4;
+    --nuetral-200: #e5e5e5;
+    --nuetral-100: #f5f5f5;
+    --nuetral-50: #fafafa;
+
+    /* TweakPane Colors - (Translucent Template)*/
+    /* https://tweakpane.github.io/docs/theming/#builder */
+    --tp-base-background-color: hsla(0, 0%, 10%, 0.8);
+    --tp-base-shadow-color: hsla(0, 0%, 0%, 0.2);
+    --tp-button-background-color: hsla(0, 0%, 80%, 1);
+    --tp-button-background-color-active: hsla(0, 0%, 100%, 1);
+    --tp-button-background-color-focus: hsla(0, 0%, 95%, 1);
+    --tp-button-background-color-hover: hsla(0, 0%, 85%, 1);
+    --tp-button-foreground-color: hsla(0, 0%, 0%, 0.8);
+    --tp-container-background-color: hsla(0, 0%, 0%, 0.3);
+    --tp-container-background-color-active: hsla(0, 0%, 0%, 0.6);
+    --tp-container-background-color-focus: hsla(0, 0%, 0%, 0.5);
+    --tp-container-background-color-hover: hsla(0, 0%, 0%, 0.4);
+    --tp-container-foreground-color: hsla(0, 0%, 100%, 0.5);
+    --tp-groove-foreground-color: hsla(0, 0%, 0%, 0.2);
+    --tp-input-background-color: hsla(0, 0%, 0%, 0.3);
+    --tp-input-background-color-active: hsla(0, 0%, 0%, 0.6);
+    --tp-input-background-color-focus: hsla(0, 0%, 0%, 0.5);
+    --tp-input-background-color-hover: hsla(0, 0%, 0%, 0.4);
+    --tp-input-foreground-color: hsla(0, 0%, 100%, 0.5);
+    --tp-label-foreground-color: hsla(0, 0%, 100%, 0.5);
+    --tp-monitor-background-color: hsla(0, 0%, 0%, 0.3);
+    --tp-monitor-foreground-color: hsla(0, 0%, 100%, 0.3);
 }
