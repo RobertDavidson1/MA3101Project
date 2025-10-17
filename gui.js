@@ -6,7 +6,7 @@ const params = {
     showAxes: true, // Loads visible
     showWireframe: true, // Loads visible
     starCount: 1000, // Number of stars
-    showPlane: false, // Loads hidden
+    showPlane: true, // Loads visible for now for development
 };
 
 // Scene Options folder
