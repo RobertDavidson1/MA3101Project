@@ -88,7 +88,7 @@ VisbilityFolder.addInput(params, 'show_p_t', {
 
 ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
 ControlsFolder.addInput(params, 'planeHeight', {
-    label: 'Plane Height',
+    label: 'h (plane height)',
     min: -1.0,
     max: 1.0,
     step: 0.01,
@@ -111,7 +111,7 @@ ControlsFolder.addInput(params, 'planeHeight', {
 });
 
 ControlsFolder.addInput(params, 't', {
-    label: 't',
+    label: 't (angle around circle)',
     min: 0.0,
     max: 2 * Math.PI,
     step: 0.01,
