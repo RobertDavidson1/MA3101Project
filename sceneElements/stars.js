@@ -1,5 +1,6 @@
 // Adapted from:
-// https://github.com/mrdoob/three.js/blob/master/examples/webgl_morphtargets_sphere.html
+// https://threejs.org/examples/?q=point#webgl_points_billboards
+// https://github.com/mrdoob/three.js/blob/master/examples/webgl_points_billboards.html
 
 function createStars(starCount) {
     const starGeometry = new THREE.BufferGeometry(); // Empty container for vertex data
