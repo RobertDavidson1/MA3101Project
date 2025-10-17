@@ -7,25 +7,26 @@ const params = {
     showWireframe: true, // Loads visible
     starCount: 1000, // Number of stars
     showPlane: true, // Loads visible for now for development
+    planeHeight: 0.0, // Height of the plane
 };
 
 // Scene Options folder
-SceneOptions = pane.addFolder({ title: 'Visibility', expanded: false });
+VisbilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
 
-SceneOptions.addInput(params, 'showAxes', {
-    label: 'Show Axes',
+VisbilityFolder.addInput(params, 'showAxes', {
+    label: 'Axes',
 }).on('change', (ev) => {
     axes.visible = ev.value;
 });
 
-SceneOptions.addInput(params, 'showWireframe', {
-    label: 'Show Sphere',
+VisbilityFolder.addInput(params, 'showWireframe', {
+    label: 'Sphere',
 }).on('change', (ev) => {
     sphere.visible = ev.value;
 });
 
-SceneOptions.addInput(params, 'starCount', {
-    label: 'Star Count',
+VisbilityFolder.addInput(params, 'starCount', {
+    label: 'Num Stars',
     min: 0,
     max: 20000,
     step: 1000,
@@ -38,8 +39,10 @@ SceneOptions.addInput(params, 'starCount', {
     scene.add(stars);
 });
 
-SceneOptions.addInput(params, 'showPlane', {
-    label: 'Show Plane',
+VisbilityFolder.addInput(params, 'showPlane', {
+    label: 'Plane',
 }).on('change', (ev) => {
     plane.visible = ev.value;
 });
+
+ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
