@@ -1,14 +1,15 @@
 // Basic three.js setup
 const container = document.getElementById('app');
 const scene = new THREE.Scene();
+
 const camera = new THREE.PerspectiveCamera(
     55, // FOV
     window.innerWidth / window.innerHeight, // Aspect ratio
     0.1, // Near plane
     100, // Far plane
 );
+camera.up.set(0, 0, 1); // make Z the up-axis
 camera.position.set(3, 3, 3);
-camera.lookAt(0, 0, 0);
 
 // Redraw scene on window resize
 window.addEventListener('resize', () => {
