@@ -1,4 +1,4 @@
 function createAxes() {
-    const axes = new THREE.AxesHelper(1.5);
+    const axes = new THREE.AxesHelper(2);
     return axes;
 }
