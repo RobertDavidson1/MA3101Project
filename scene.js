@@ -35,12 +35,13 @@ axes = createAxes(params.showAxes);
 stars = createStars(params.starCount);
 plane = createPlane(params.showPlane);
 sphere = createSphere(params.showSphere);
-
+circleCenter = createCircleCenter(params.showCircleCenter);
 // Add scene elements to the scene
 scene.add(axes);
 scene.add(stars);
 scene.add(plane);
 scene.add(sphere);
+scene.add(circleCenter);
 
 // Animation loop
 function animate() {
