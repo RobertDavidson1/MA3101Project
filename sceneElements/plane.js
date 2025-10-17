@@ -14,10 +14,8 @@ function createPlane(visible) {
     // Take the geometry and material and form a mesh
     const plane = new THREE.Mesh(planeGeometry, material);
 
-    // Rotate plane so it's in the xy plane
-    plane.rotation.x = Math.PI / 2;
-
     // Set initial visibility
     plane.visible = visible;
+
     return plane;
 }
