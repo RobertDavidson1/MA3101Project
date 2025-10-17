@@ -13,6 +13,8 @@ function createSphere(visible) {
     // Take the geometry and material and form a mesh
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
+    sphere.rotation.x = Math.PI / 2;
+
     // Set initial visibility
     sphere.visible = visible;
     return sphere;
