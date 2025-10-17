@@ -3,12 +3,13 @@ const pane = new Tweakpane.Pane();
 
 // Parameters
 const params = {
-    showAxes: false, // Loads invisible for now for devlopment
-    showWireframe: true, // Loads visible
-    starCount: 1000, // Number of stars
-    showPlane: true, // Loads visible for now for development
-    showCircleCenter: true, // Loads visible for now for development
-    planeHeight: 0.0, // Height of the plane
+    showAxes: false,
+    showWireframe: true,
+    starCount: 1000,
+    showPlane: true,
+    showCircleCenter: true,
+    showCircle: true,
+    planeHeight: 0.0,
 };
 
 // Scene Options folder
@@ -51,6 +52,19 @@ VisbilityFolder.addInput(params, 'showPlane', {
     plane.visible = ev.value;
 });
 
+VisbilityFolder.addInput(params, 'showCircle', {
+    label: 'Circle',
+}).on('change', (ev) => {
+    circle.visible = ev.value;
+
+    // If turned back on, re-create the circle with the new plane height
+    if (ev.value === true) {
+        scene.remove(circle);
+        circle = createCircle(params.planeHeight);
+        scene.add(circle);
+    }
+});
+
 ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
 ControlsFolder.addInput(params, 'planeHeight', {
     label: 'Plane Height',
@@ -61,7 +75,10 @@ ControlsFolder.addInput(params, 'planeHeight', {
     plane.position.z = ev.value;
     circleCenter.position.z = ev.value;
 
-    scene.remove(circle);
-    circle = createCircle(ev.value);
-    scene.add(circle);
+    // Only update the circle if its visible - avoids uncessary re-rendering
+    if (circle.visible === true) {
+        scene.remove(circle);
+        circle = createCircle(ev.value);
+        scene.add(circle);
+    }
 });
