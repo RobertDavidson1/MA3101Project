@@ -3,10 +3,11 @@ const pane = new Tweakpane.Pane();
 
 // Parameters
 const params = {
-    showAxes: true, // Loads visible
+    showAxes: false, // Loads invisible for now for devlopment
     showWireframe: true, // Loads visible
     starCount: 1000, // Number of stars
     showPlane: true, // Loads visible for now for development
+    showCircleCenter: true, // Loads visible for now for development
     planeHeight: 0.0, // Height of the plane
 };
 
@@ -23,6 +24,11 @@ VisbilityFolder.addInput(params, 'showWireframe', {
     label: 'Sphere',
 }).on('change', (ev) => {
     sphere.visible = ev.value;
+});
+VisbilityFolder.addInput(params, 'showCircleCenter', {
+    label: 'Circle Center',
+}).on('change', (ev) => {
+    circleCenter.visible = ev.value;
 });
 
 VisbilityFolder.addInput(params, 'starCount', {
@@ -53,4 +59,5 @@ ControlsFolder.addInput(params, 'planeHeight', {
     step: 0.1,
 }).on('change', (ev) => {
     plane.position.z = ev.value;
+    circleCenter.position.z = ev.value;
 });
