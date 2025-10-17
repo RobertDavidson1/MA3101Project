@@ -1,7 +1,7 @@
 function createCircleCenter(visible) {
     // Create geometry with this single point
     const circleCenterGeometry = new THREE.SphereGeometry(
-        0.01, // radius
+        0.025, // radius
         32, // width segments
         32, // height segments
     );
@@ -13,7 +13,6 @@ function createCircleCenter(visible) {
     });
 
     // Create the point
-    // 6. Create a mesh (3D object)
     const sphere = new THREE.Mesh(circleCenterGeometry, material);
 
     sphere.visible = visible;
@@ -57,7 +56,7 @@ function createCircle(planeHeight, visibility) {
     }
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.LineBasicMaterial({
-        color: getColor('--red-500'),
+        color: getColor('--gray-100'),
     });
     const circle = new THREE.LineLoop(geometry, material);
 
@@ -73,7 +72,7 @@ function pointOnCircle(planeHeight, visible, t) {
     );
 
     const material = new THREE.MeshBasicMaterial({
-        color: getColor('--red-500'),
+        color: getColor('--gray-100'),
         depthTest: false,
     });
 
