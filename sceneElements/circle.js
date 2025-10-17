@@ -20,7 +20,7 @@ function createCircleCenter(visible) {
     return sphere;
 }
 
-function createCircle(planeHeight) {
+function createCircle(planeHeight, visibility) {
     // r = (1-h^2)^(1/2)
     const h = Math.max(-1, Math.min(1, planeHeight));
     const r = Math.sqrt(Math.max(0, 1 - h * h));
@@ -49,5 +49,7 @@ function createCircle(planeHeight) {
         color: getColor('--red-500'),
     });
     const circle = new THREE.LineLoop(geometry, material);
+
+    circle.visible = visibility;
     return circle;
 }
