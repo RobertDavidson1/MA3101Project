@@ -7,7 +7,7 @@ const params = {
     showWireframe: true,
     starCount: 1000,
     showPlane: true,
-    showCircleCenter: true,
+    showCircleCenter: false,
     showCircle: true,
     planeHeight: 0.0,
 };
