@@ -1,0 +1,131 @@
+\documentclass[9pt]{extarticle}
+\usepackage{changepage}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\begin{document}
+
+\begin{center}
+    \vspace{0.5cm}
+    Investigating the Acceleration Vector and the Great Circle on $S^2$\\
+    MA3101 Project\\[24pt]
+    \LARGE
+
+    \Large
+    \textbf{Robert Davidson}\\[6pt]
+    \small
+    BSc Mathematics and Computer Science \\ r.davidson1@universityofgalway.ie\\[6pt]
+    Date: \today\\[12pt]
+\end{center}
+
+\vspace{1.5cm}
+
+\section{Why this project?}
+In my Euclidean and Non Euclidean Geometry class, we learned that if the acceleration vector of a curve is always normal to the tangent plane, then the curve is a geodesic\\[0.5ex]
+On the sphere, $S^2$, every geodesic is a great circle, which is circle formed a plane through the sphere's center. \\[0.5ex]
+I was deeply fascintated by this result, and I wanted to find a way to visualise it, which led me to create the \href{https://robertdavidson1.github.io/MA3101Project/}{website} hosted on GitHub.
+This brief writeup covers the mathematics I needed in order to creat the website.
+
+\section{The Mathematics}
+In order to explore great circles on $S^2$, and the acceleration vector, we need to understand the geometry of the sphere. We first start by defining the plane:
+\subsection{The 2-Sphere}
+We define the 2-sphere, $S^2$, as the set of all points in $\mathbb{R}^3$ such that:
+$$x^2 + y^2 + z^2 = 1$$
+This represents a sphere of radius 1 centered at the origin. \\[1ex]
+The normal vector at a point $\mathbf{s} = (x, y, z)$ on the 2-sphere is the vector perpendicular to the tangent plane at that point. \\
+It is givn by the gradient of the function $f(x,y,z) = x^2 + y^2 + z^2 - 1$:
+$$\nabla f(\mathbf{s}) = (2x, 2y, 2z) = 2\textbf{s}$$
+\subsection{The Plane}
+A plane $P$ can be written as:
+$$ax + by + cz = d$$
+Where $\textbf{n} = (a,b,c)$ is the normal vector to the plane, so the equation becomes:
+$$P : \textbf{n} \cdot (x,y,z) = d$$
+We normalize $\textbf{n}$ so it represents direction only:
+$$\hat{\textbf{n}} = \frac{\textbf{n}}{\|\textbf{n}\|}$$
+We can then write the plane equation as:
+$$P : \hat{\textbf{n}} \cdot (x,y,z) = \frac{d}{\|\textbf{n}\|}$$
+We let $h = \frac{d}{\|\textbf{n}\|}$ be the distance from the origin to the plane.
+So the plane equation becomes:
+$$P : \hat{\textbf{n}} \cdot (x,y,z) = h$$
+We note that the plane intersects the sphere when $|h| \leq 1$.
+\subsection{The Intersection of a Plane and the 2-Sphere}
+We define a line $L(t)$ a line from the origin in the direction of the planes normal vector:
+$$L(t) = t \hat{\textbf{n}}$$
+The line intersects the plane when $t= h$, so the closest point on the plane to the origin is:
+$$c = h \hat{\textbf{n}}$$
+Because the sphere is symmetrical, the plane cuts it in a circle centered at c:
+circle, with center $c = h \hat{\textbf{n}}$
+If we let:
+\begin{itemize}
+    \item Q : A point on the circumference of the circle formed by the intersection of the plane and the sphere
+    \item C : The center of the circle
+    \item O : The origin
+\end{itemize}
+We form a $\triangle OQC$ with sides:
+\begin{itemize}
+    \item $OC = h$ : Distance from origin to center of circle
+    \item $OP = R$ : Distance from origin to point on circumference
+    \item $CP = r$ : Distance from center of circle to point on circumference of planes cut
+\end{itemize}
+By the Pythagorean theorem, we have:
+\begin{align*}
+    R^2 & = h^2 + r^2                                               \\
+    r   & = \sqrt{R^2 - h^2}                                        \\
+    r   & = \sqrt{1 - h^2} \quad \text{Since radius of sphere is 1}
+\end{align*}
+So wthe circle on the sphere, cut by plane has center, $c = (0,0,h)$ and radius $r = \sqrt{1 - h^2}$. \\
+For simplicty, in the website, we let $\hat{\textbf{n}} = (0,0,1)$, then we get
+\begin{align*}
+     & P : (0,0,1) \cdot (x,y,z) = h    \\
+     & P : z = h                        \\[1ex]
+     & c = h \hat{\textbf{n}} = (0,0,h) \\
+     & r = \sqrt{1 - h^2}
+\end{align*}
+\subsection{Paramertising The Sphere}
+We choose two vectors, \textbf{u} and \textbf{v}, that are on the plane, that is:
+$$u, v \perp \hat{\textbf{n}}$$
+If we enforce $$\mid \mid u \mid \mid = \mid \mid v \mid \mid = 1 \quad \text{and} \quad u \perp v$$
+we can define a circle on P:
+$$C(t) = \cos(t) u + \sin(t) v \quad t \in [0, 2\pi]$$
+Recognising that we let $\hat{\textbf{n}} = \hat{k} = (0,0,1$), and using the fact:
+$$\hat{i} \perp \hat{j} \perp \hat{k} \quad \text{and} \quad \mid \mid \hat{i} \mid \mid = \mid \mid \hat{j} \mid \mid = \mid \mid \hat{k} \mid \mid = 1$$
+We can let $u = \hat{i}$ and $v = \hat{j}$, then we get:
+$$C(t) = \cos(t) \hat{i} + \sin(t) \hat{j}\quad t \in [0, 2\pi]$$
+Finally, scaling to radius $r$ and moving to center $c$ we get:
+$$C(t) = c + r \left[\cos(t) \hat{i} + \sin(t) \hat{j}\right]$$
+\subsection{Velocity and Acceleration Vectors}
+We can take the first and second derivatives of $C(t)$ to get the velocity and acceleration vectors:
+
+\begin{align*}
+    v(t) & = \frac{d}{dt} \left[C(t)\right]                             \\
+    v(t) & = r\left[-\sin(t) \hat{i} + \cos(t) \hat{j} \right]          \\[1ex]
+         & \text{and}                                                   \\[1ex]
+    a(t) & = \frac{d^2}{dt^2} \left[C(t)\right]                         \\
+         & = \frac{d}{dt}\left[v(t) \right]                             \\
+         & = -r\left[-\cos(t) \hat{i} + \sin(t) \hat{j} \right]         \\
+         & = c - c - -r\left[-\cos(t) \hat{i} + \sin(t) \hat{j} \right] \\
+         & = c - C(t)
+\end{align*}
+\subsection{Tieing it all together}
+We see that if $h = 0$, then the plane cuts the sphere through the origin, which is the definition of a great circle.\\
+We also see that setting $h = 0$ also gives us a circle with center at the origin and radius 1.
+\begin{align*}
+    c = h \hat{\textbf{n}} \\
+    c = 0 \hat{\textbf{n}} \\
+    c = 0                  \\
+    \text{and}             \\
+    r = \sqrt{1- h^2}      \\
+    r = \sqrt{1- 0^2}      \\
+    r = 1                  \\
+\end{align*}
+The aceleration vector also simplifies to:
+\begin{align*}
+    a(t) & = c - C(t) \\
+    a(t) & = 0 - C(t) \\
+    a(t) & = - C(t)
+\end{align*}
+
+
+
+
+\end{document}
