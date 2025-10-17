@@ -46,3 +46,11 @@ VisbilityFolder.addInput(params, 'showPlane', {
 });
 
 ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
+ControlsFolder.addInput(params, 'planeHeight', {
+    label: 'Plane Height',
+    min: -1.0,
+    max: 1.0,
+    step: 0.1,
+}).on('change', (ev) => {
+    plane.position.z = ev.value;
+});
