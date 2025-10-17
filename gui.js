@@ -9,10 +9,15 @@ const params = {
     showPlane: true,
     showCircleCenter: false,
     showCircle: true,
+    show_p_t: true,
     planeHeight: 0.0,
+    t: 0.0,
 };
 
-// Scene Options folder
+//////////////////////////////////////////
+//           Visibility Folder          //
+//////////////////////////////////////////
+
 VisbilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
 
 VisbilityFolder.addInput(params, 'showAxes', {
@@ -65,6 +70,22 @@ VisbilityFolder.addInput(params, 'showCircle', {
     }
 });
 
+VisbilityFolder.addInput(params, 'show_p_t', {
+    label: 'p_t',
+}).on('change', (ev) => {
+    p_t.visible = ev.value;
+
+    if (ev.value === true) {
+        scene.remove(p_t);
+        p_t = pointOnCircle(params.planeHeight, params.showCircle, params.t);
+        scene.add(p_t);
+    }
+});
+
+//////////////////////////////////////////
+//           Controls Folder            //
+//////////////////////////////////////////
+
 ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
 ControlsFolder.addInput(params, 'planeHeight', {
     label: 'Plane Height',
@@ -80,5 +101,24 @@ ControlsFolder.addInput(params, 'planeHeight', {
         scene.remove(circle);
         circle = createCircle(ev.value, params.showCircle);
         scene.add(circle);
+    }
+
+    if (p_t.visible == true) {
+        scene.remove(p_t);
+        p_t = pointOnCircle(ev.value, params.showCircle, params.t);
+        scene.add(p_t);
+    }
+});
+
+ControlsFolder.addInput(params, 't', {
+    label: 't',
+    min: 0.0,
+    max: 2 * Math.PI,
+    step: 0.01,
+}).on('change', (ev) => {
+    if (p_t.visible == true) {
+        scene.remove(p_t);
+        p_t = pointOnCircle(params.planeHeight, params.showCircle, ev.value);
+        scene.add(p_t);
     }
 });
