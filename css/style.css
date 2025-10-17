@@ -3,3 +3,7 @@ html,
     position: fixed;
     inset: 0;
 }
+
+.tp-dfwv {
+    width: 350px !important; /* Change from default ~280px to 350px */
+}
