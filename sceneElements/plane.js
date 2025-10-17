@@ -1,3 +1,4 @@
+// Setting h = z makes rendering the plane cheaper
 function createPlane(visible) {
     // Create a plane with a width and height of 1
     const planeGeometry = new THREE.PlaneGeometry(3, 3);
