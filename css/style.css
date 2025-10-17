@@ -7,3 +7,10 @@ html,
 .tp-dfwv {
     width: 350px !important; /* Change from default ~280px to 350px */
 }
+
+#maths-writeup-button {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 1000;
+}
