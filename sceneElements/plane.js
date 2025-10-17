@@ -1,4 +1,4 @@
-function createPlane() {
+function createPlane(visible) {
     // Create a plane with a width and height of 1
     const planeGeometry = new THREE.PlaneGeometry(3, 3);
 
@@ -16,5 +16,8 @@ function createPlane() {
 
     // Rotate plane so it's in the xy plane
     plane.rotation.x = Math.PI / 2;
+
+    // Set initial visibility
+    plane.visible = visible;
     return plane;
 }
