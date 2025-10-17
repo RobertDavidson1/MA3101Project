@@ -1,4 +1,4 @@
-\documentclass[9pt]{extarticle}
+\documentclass[11pt]{article}
 \usepackage{changepage}
 \usepackage{hyperref}
 \usepackage{amssymb}
@@ -7,7 +7,7 @@
 
 \begin{center}
     \vspace{0.5cm}
-    Investigating the Acceleration Vector and the Great Circle on $S^2$\\
+    Investigating the Acceleration Vector and Geodesics on $S^2$\\
     MA3101 Project\\[24pt]
     \LARGE
 
@@ -20,22 +20,28 @@
 
 \vspace{1.5cm}
 
-\section{Why this project?}
-In my Euclidean and Non Euclidean Geometry class, we learned that if the acceleration vector of a curve is always normal to the tangent plane, then the curve is a geodesic\\[0.5ex]
+\subsection*{Why this project?}
+In my Euclidean and Non Euclidean Geometry lectures, we learned that if the acceleration vector of a curve is always normal to the tangent plane, then the curve is a geodesic\\[0.5ex]
 On the sphere, $S^2$, every geodesic is a great circle, which is circle formed a plane through the sphere's center. \\[0.5ex]
-I was deeply fascintated by this result, and I wanted to find a way to visualise it, which led me to create the \href{https://robertdavidson1.github.io/MA3101Project/}{website} hosted on GitHub.
-This brief writeup covers the mathematics I needed in order to creat the website.
+I was really intrigued by this result, and I wanted to find a way to visualise it, which led me to build an interactive visualization, which is avilable at \href{https://robertdavidson1.github.io/MA3101Project/}{this website} hosted on GitHub.
+This brief writeup covers the mathematics I did to both understand why the statement is true, and to create the website. 
 
-\section{The Mathematics}
-In order to explore great circles on $S^2$, and the acceleration vector, we need to understand the geometry of the sphere. We first start by defining the plane:
-\subsection{The 2-Sphere}
+\subsection*{The Motivation}
+In order to explore the statement, that all geodesics on $S^2$ have acceleration vectors normal to the tangent plane, we first need to define the geometry of $S^2$ and what it means for a vector to be normal to the tangent plane. \\[0.5ex] We then move onto to defining the plane so we can define how it intersects the sphere. \\[0.5ex]
+Once we have this plane, we can define a circle on this plane, and parameterize it, and take the derivatives in order to get the velocity and acceleration vectors. \\[0.5ex]
+Finally, we tie it all together to show that if the acceleration vector of a curve is always normal to the tangent plane, then the curve is a geodesic. 
+
+\newpage
+
+\subsection*{The 2-Sphere}
 We define the 2-sphere, $S^2$, as the set of all points in $\mathbb{R}^3$ such that:
 $$x^2 + y^2 + z^2 = 1$$
-This represents a sphere of radius 1 centered at the origin. \\[1ex]
+This represents a sphere of radius 1 centered at the origin. \\
 The normal vector at a point $\mathbf{s} = (x, y, z)$ on the 2-sphere is the vector perpendicular to the tangent plane at that point. \\
-It is givn by the gradient of the function $f(x,y,z) = x^2 + y^2 + z^2 - 1$:
-$$\nabla f(\mathbf{s}) = (2x, 2y, 2z) = 2\textbf{s}$$
-\subsection{The Plane}
+It is given by the gradient of the function $f(x,y,z) = x^2 + y^2 + z^2 - 1$:
+$$\mathbf{n}_{S^2} = \nabla f(\mathbf{s}) = (2x, 2y, 2z) = 2\textbf{s}$$
+So, the normal vector is just a scalar multiple of the position vector. 
+\subsection*{The Plane}
 A plane $P$ can be written as:
 $$ax + by + cz = d$$
 Where $\textbf{n} = (a,b,c)$ is the normal vector to the plane, so the equation becomes:
@@ -48,14 +54,19 @@ We let $h = \frac{d}{\|\textbf{n}\|}$ be the distance from the origin to the pla
 So the plane equation becomes:
 $$P : \hat{\textbf{n}} \cdot (x,y,z) = h$$
 We note that the plane intersects the sphere when $|h| \leq 1$.
-\subsection{The Intersection of a Plane and the 2-Sphere}
-We define a line $L(t)$ a line from the origin in the direction of the planes normal vector:
-$$L(t) = t \hat{\textbf{n}}$$
+\newpage
+\subsection*{The Intersection of a Plane and the 2-Sphere}
+We define a line $L(t)$ a line from the origin in the direction of the planes normal vector: $L(t) = t \hat{\textbf{n}}$. \\
 The line intersects the plane when $t= h$, so the closest point on the plane to the origin is:
-$$c = h \hat{\textbf{n}}$$
-Because the sphere is symmetrical, the plane cuts it in a circle centered at c:
-circle, with center $c = h \hat{\textbf{n}}$
+$$\mathbf{C} = h \hat{\mathbf{n}}
+$$
+The plane cuts the sphere in a circle centered at $\mathbf{C}$.
 If we let:
+\noindent
+
+
+
+    \vspace{0pt}
 \begin{itemize}
     \item Q : A point on the circumference of the circle formed by the intersection of the plane and the sphere
     \item C : The center of the circle
@@ -73,59 +84,56 @@ By the Pythagorean theorem, we have:
     r   & = \sqrt{R^2 - h^2}                                        \\
     r   & = \sqrt{1 - h^2} \quad \text{Since radius of sphere is 1}
 \end{align*}
-So wthe circle on the sphere, cut by plane has center, $c = (0,0,h)$ and radius $r = \sqrt{1 - h^2}$. \\
-For simplicty, in the website, we let $\hat{\textbf{n}} = (0,0,1)$, then we get
+So the circle on the sphere, cut by plane has center, $\mathbf{C} = (0,0,h)$ and radius $r = \sqrt{1 - h^2}$. \\
+For simplicty, in the website, we let $\hat{\textbf{n}} = (0,0,1)$, which also helped in choosing vectors $\mathbf{u}$ and $\mathbf{v}$ later, then we get
 \begin{align*}
      & P : (0,0,1) \cdot (x,y,z) = h    \\
      & P : z = h                        \\[1ex]
-     & c = h \hat{\textbf{n}} = (0,0,h) \\
+     & \mathbf{C} = h \hat{\textbf{n}} = (0,0,h) \\
      & r = \sqrt{1 - h^2}
 \end{align*}
-\subsection{Paramertising The Sphere}
+\subsection*{Parameterization of the Circle on the Plane}
 We choose two vectors, \textbf{u} and \textbf{v}, that are on the plane, that is:
-$$u, v \perp \hat{\textbf{n}}$$
-If we enforce $$\mid \mid u \mid \mid = \mid \mid v \mid \mid = 1 \quad \text{and} \quad u \perp v$$
+$$\mathbf{u}, \textbf{v} \perp \hat{\textbf{n}}$$
+If we enforce $$\mid \mid \mathbf{u} \mid \mid = \mid \mid \textbf{v} \mid \mid = 1 \quad \text{and} \quad \mathbf{u} \perp \textbf{v}$$
 we can define a circle on P:
-$$C(t) = \cos(t) u + \sin(t) v \quad t \in [0, 2\pi]$$
+$$\textbf{p}(t) = \cos(t) \mathbf{u} + \sin(t) \textbf{v} \quad t \in [0, 2\pi]$$
+More precisely, $\textbf{p}(t)$ is a position vector from the origin to a point on the circle on the plane. \\
 Recognising that we let $\hat{\textbf{n}} = \hat{k} = (0,0,1$), and using the fact:
 $$\hat{i} \perp \hat{j} \perp \hat{k} \quad \text{and} \quad \mid \mid \hat{i} \mid \mid = \mid \mid \hat{j} \mid \mid = \mid \mid \hat{k} \mid \mid = 1$$
-We can let $u = \hat{i}$ and $v = \hat{j}$, then we get:
-$$C(t) = \cos(t) \hat{i} + \sin(t) \hat{j}\quad t \in [0, 2\pi]$$
-Finally, scaling to radius $r$ and moving to center $c$ we get:
-$$C(t) = c + r \left[\cos(t) \hat{i} + \sin(t) \hat{j}\right]$$
-\subsection{Velocity and Acceleration Vectors}
-We can take the first and second derivatives of $C(t)$ to get the velocity and acceleration vectors:
-
+We can let $\textbf{u} = \hat{i}$ and $\textbf{v} = \hat{j}$, then we get:
+$$\textbf{p}(t) = \cos(t) \hat{i} + \sin(t) \hat{j}\quad t \in [0, 2\pi]$$
+Finally, scaling to radius $r$ and moving to center $\mathbf{c}$ we get:
+$$\textbf{p}(t) = \mathbf{C} + r \left[\cos(t) \hat{i} + \sin(t) \hat{j}\right]$$
+\subsection*{Velocity and Acceleration Vectors}
+We can take the first and second derivatives of $\textbf{p}(t)$ to get the velocity and acceleration vectors:
 \begin{align*}
-    v(t) & = \frac{d}{dt} \left[C(t)\right]                             \\
-    v(t) & = r\left[-\sin(t) \hat{i} + \cos(t) \hat{j} \right]          \\[1ex]
-         & \text{and}                                                   \\[1ex]
-    a(t) & = \frac{d^2}{dt^2} \left[C(t)\right]                         \\
-         & = \frac{d}{dt}\left[v(t) \right]                             \\
-         & = -r\left[-\cos(t) \hat{i} + \sin(t) \hat{j} \right]         \\
-         & = c - c - -r\left[-\cos(t) \hat{i} + \sin(t) \hat{j} \right] \\
-         & = c - C(t)
+    \mathbf{v}(t) & = \frac{d}{dt} \left[\textbf{p}(t)\right] =  r\left[-\sin(t) \hat{i} + \cos(t) \hat{j} \right]\\                                                               
+          \mathbf{a}(t) &= -r[\cos(t)\hat{i} + \sin(t)\hat{j}] 
 \end{align*}
-\subsection{Tieing it all together}
-We see that if $h = 0$, then the plane cuts the sphere through the origin, which is the definition of a great circle.\\
-We also see that setting $h = 0$ also gives us a circle with center at the origin and radius 1.
+Rewriting \textbf{p}(t), we get:
+$$r[\cos(t)\,\hat{i} + \sin(t)\,\hat{j}] = \textbf{p}(t) - \mathbf{C}$$
+So, we can rewrite $\mathbf{a}(t)$ as:
+$$\mathbf{a}(t) = \mathbf{C} - \textbf{\textbf{p}(t)}$$
+\newpage
+\subsection*{Tieing it all together}
+We see that if $h = 0$, that is the distance from the origin to the plane is 0, the plane gives us a circle on $S^2$ with center at the origin and radius 1, which is the definition of a great circle.
 \begin{align*}
-    c = h \hat{\textbf{n}} \\
-    c = 0 \hat{\textbf{n}} \\
-    c = 0                  \\
-    \text{and}             \\
-    r = \sqrt{1- h^2}      \\
-    r = \sqrt{1- 0^2}      \\
-    r = 1                  \\
+    \mathbf{C} &= h \hat{\textbf{n}} = 0 \hat{\textbf{n}} = 0  \\[1ex]
+    r &= \sqrt{1- h^2} = \sqrt{1- 0^2} = 1      \\
 \end{align*}
 The aceleration vector also simplifies to:
 \begin{align*}
-    a(t) & = c - C(t) \\
-    a(t) & = 0 - C(t) \\
-    a(t) & = - C(t)
+    \mathbf{a}(t) & = \mathbf{C} - \textbf{p}(t) \\
+    \mathbf{a}(t) & = 0 - \textbf{p}(t) \\
+    \mathbf{a}(t) & = - \textbf{p}(t)
 \end{align*}
-
-
-
+So when $h = 0$,that is, when the plane cuts the 2-Sphere through the origin, we get a circle centered at the origin with radius 1, this by definition is a great circle. \\
+The acceleration vector around this circle is just a scalar multiple of the position vector, which is the same as the sphere's normal vector. \\
+So, when     \\[1ex]
+Therefore, in order for the acceleration vector to be normal to the tangent plane, the curve must be a great circle, and thus a geodesic.
+\pagebreak
+\section*{Acknowledgements}
+I used ChatGPT to help verify the algebraic derivations and ensure the mathematical reasoning in this write-up was correct.
 
 \end{document}
