@@ -39,7 +39,7 @@ plane = createPlane(params.showPlane);
 sphere = createSphere(params.showSphere);
 circleCenter = createCircleCenter(params.showCircleCenter);
 circle = createCircle(params.planeHeight, params.showCircle);
-p_t = pointOnCircle(params.planeHeight, params.showCircle, 0);
+p_t = pointOnCircle(params.planeHeight, params.showCircle, params.t);
 
 // Add scene elements to the scene
 scene.add(axes);
