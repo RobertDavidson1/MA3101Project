@@ -37,10 +37,7 @@ axes = createAxes(params.showAxes);
 stars = createStars(params.starCount);
 plane = createPlane(params.showPlane);
 sphere = createSphere(params.showSphere);
-circleCenter = createCircleCenter(
-    params.showCircleCenter,
-    params.showCircleCenter,
-);
+circleCenter = createCircleCenter(params.showCircleCenter);
 circle = createCircle(params.planeHeight, params.showCircle);
 
 // Add scene elements to the scene
