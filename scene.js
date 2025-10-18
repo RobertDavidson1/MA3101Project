@@ -22,7 +22,7 @@ window.addEventListener('resize', () => {
 renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.devicePixelRatio); // Render at full native screen resolution
 renderer.setSize(window.innerWidth, window.innerHeight); // Use the full window size
-renderer.setClearColor(getColor('--gray-900')); // Set background color to gray-900
+renderer.setClearColor(getColor('--neutral-800')); // Set background color to gray-900
 container.appendChild(renderer.domElement);
 
 renderer.antialias = true; // Enable antialiasing
