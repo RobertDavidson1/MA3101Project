@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
+:root {
+    --button-color: var(--red);
+}
+
 html,
 #app {
     position: fixed;
@@ -7,7 +11,9 @@ html,
 }
 
 .tp-dfwv {
-    width: 350px !important; /* Change from default ~280px to 350px */
+    width: 350px !important;
+    top: 20px;
+    left: 20px;
 }
 
 a {
@@ -17,15 +23,10 @@ a {
 
 /* Button Adapted From:
 https://uiverse.io/vinodjangid07/afraid-falcon-17 */
-
-:root {
-    --button-color: var(--red);
-}
-
 #maths-writeup-button {
     position: fixed;
     bottom: 60px;
-    left: 70px;
+    right: 70px;
     z-index: 1000;
     background-color: var(--button-color);
     width: 50px;
@@ -53,7 +54,7 @@ https://uiverse.io/vinodjangid07/afraid-falcon-17 */
     align-items: center;
 
     /* 0.6 = 60% opacity, adjust as needed */
-    transform: translateX(-35px);
+    transform: translateX(35px);
     box-shadow:
         0px 0px 0px 4px color-mix(in srgb, var(--button-color) 10%, transparent),
         0 0 5px color-mix(in srgb, var(--button-color) 20%, transparent),
