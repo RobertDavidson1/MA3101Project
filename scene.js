@@ -33,20 +33,33 @@ controls.enableDamping = true; // Enable damping for smoother movement
 controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max camera distance to (30,30,30)
 
 // Scene elements
-axes = createAxes(params.showAxes);
-stars = createStars(params.starCount);
-plane = createPlane(params.showPlane);
-sphere = createSphere(params.showSphere);
-circleCenter = createCircleCenter(params.showCircleCenter);
-circle = createCircle(params.planeHeight, params.showCircle);
-p_t = pointOnCircle(params.planeHeight, params.showCircle, params.t);
+axes = createAxes(p.showAxes);
+stars = createStars(p.starCount);
+plane = createPlane(p.showPlane);
+
+sphere = createSphere(p.showSphere);
+circleCenter = createCircleCenter(p.planeHeight, p.showCircleCenter);
+cosVector = createCosVector(p.t, p.planeHeight, p.showCosSinVectors);
+sinVector = createSinVector(p.t, p.planeHeight, p.showCosSinVectors);
+cosVectorTip = createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors);
+sinVectorTip = createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors);
+p_t_vector = create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector);
+
+circle = createCircle(p.planeHeight, p.showCircle);
+p_t = create_p_t_point(p.planeHeight, p.show_p_t, p.t);
 
 // Add scene elements to the scene
+
 scene.add(axes);
 scene.add(stars);
 scene.add(plane);
 scene.add(sphere);
 scene.add(circleCenter);
+scene.add(cosVector);
+scene.add(sinVector);
+scene.add(cosVectorTip);
+scene.add(sinVectorTip);
+scene.add(p_t_vector);
 scene.add(circle);
 scene.add(p_t);
 
