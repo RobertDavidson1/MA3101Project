@@ -5,10 +5,10 @@ function createPlane(visible) {
 
     // Create a material for the plane
     const material = new THREE.MeshBasicMaterial({
-        color: getColor('--red-500'),
+        color: getColor('--neutral-900'),
         side: THREE.DoubleSide, // Render both sides of the plane
         transparent: true, // Allow the plane to be transparent
-        opacity: 0.25,
+        opacity: 0.5,
         depthTest: false,
     });
 
