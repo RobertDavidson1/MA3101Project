@@ -1,4 +1,4 @@
-function createAxes(visible) {
+export function createAxes(visible) {
     const axes = new THREE.AxesHelper(2);
 
     // Set initial visibility

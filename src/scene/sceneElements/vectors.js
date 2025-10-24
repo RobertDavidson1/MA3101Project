@@ -1,4 +1,4 @@
-function createSphereNormal(t, planeHeight, visible) {
+export function createSphereNormal(t, planeHeight, visible) {
     const position = calculateCirclePoint(planeHeight, t);
     const normal = calculateGradient(position, true); // normalized
 
@@ -16,7 +16,7 @@ function createSphereNormal(t, planeHeight, visible) {
     return normalVector; // Return the actual vector
 }
 
-function createAcclerationVector(t, planeHeight, visible) {
+export function createAcclerationVector(t, planeHeight, visible) {
     const position = calculateCirclePoint(planeHeight, t);
     const acceleration = calculateAcceleration(position, planeHeight, true);
 

@@ -1,4 +1,4 @@
-function createCosVector(t, planeHeight, visible) {
+export function createCosVector(t, planeHeight, visible) {
     const cos_T = cosT(t);
     const C = calculateCircleCenter(planeHeight);
     const r = calculateRadius(planeHeight);
@@ -26,7 +26,7 @@ function createCosVector(t, planeHeight, visible) {
     return cosVector;
 }
 
-function createSinVector(t, planeHeight, visible) {
+export function createSinVector(t, planeHeight, visible) {
     const sin_T = sinT(t);
     const C = calculateCircleCenter(planeHeight);
     const r = calculateRadius(planeHeight);
@@ -54,7 +54,7 @@ function createSinVector(t, planeHeight, visible) {
     return sinVector;
 }
 
-function createCosineCompletion(t, planeHeight, visible) {
+export function createCosineCompletion(t, planeHeight, visible) {
     const cos_T = cosT(t);
     const sin_T = sinT(t);
     const C = calculateCircleCenter(planeHeight);
@@ -79,7 +79,7 @@ function createCosineCompletion(t, planeHeight, visible) {
     return line;
 }
 
-function createSinCompletion(t, planeHeight, visible) {
+export function createSinCompletion(t, planeHeight, visible) {
     const cos_T = cosT(t);
     const sin_T = sinT(t);
     const C = calculateCircleCenter(planeHeight);

@@ -1,4 +1,4 @@
-function create_p_t_point(planeHeight, visible, t) {
+export function create_p_t_point(planeHeight, visible, t) {
     const circumferencePointGeometry = new THREE.SphereGeometry(
         0.025, // radius
         32, // width segments
@@ -13,12 +13,12 @@ function create_p_t_point(planeHeight, visible, t) {
     const sphere = new THREE.Mesh(circumferencePointGeometry, material);
     sphere.visible = visible;
 
-    position = calculateCirclePoint(planeHeight, t);
+    const position = calculateCirclePoint(planeHeight, t);
     sphere.position.copy(position);
     return sphere;
 }
 
-function create_p_t_vector(t, planeHeight, visible) {
+export function create_p_t_vector(t, planeHeight, visible) {
     const C = calculateCircleCenter(planeHeight);
     const r = calculateRadius(planeHeight);
 

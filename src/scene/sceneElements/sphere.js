@@ -1,7 +1,7 @@
 // Adapted from:
 // https://github.com/mrdoob/three.js/blob/master/examples/webgl_camera.html
 
-function createSphere(visible) {
+export function createSphere(visible) {
     // Create a sphere with 16 segments and 8 rings
     const sphereGeometry = new THREE.SphereGeometry(1, 32, 16);
 
@@ -23,7 +23,7 @@ function createSphere(visible) {
     return sphere;
 }
 
-function createSphereCenter(visible) {
+export function createSphereCenter(visible) {
     const circumferencePointGeometry = new THREE.SphereGeometry(
         0.025, // radius
         32, // width segments

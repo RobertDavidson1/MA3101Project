@@ -2,7 +2,7 @@
 // https://threejs.org/examples/?q=point#webgl_points_billboards
 // https://github.com/mrdoob/three.js/blob/master/examples/webgl_points_billboards.html
 
-function createStars(starCount) {
+export function createStars(starCount) {
     const starGeometry = new THREE.BufferGeometry(); // Empty container for vertex data
     const starPositions = new Float32Array(starCount * 3); // Aray to store star positions
 

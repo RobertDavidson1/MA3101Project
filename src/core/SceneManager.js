@@ -1,4 +1,4 @@
-class SceneManager {
+export class SceneManager {
     constructor(scene) {
         this.scene = scene;
         this.elements = new Map(); // A map to store all scene elements
