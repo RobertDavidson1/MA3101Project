@@ -13,7 +13,7 @@ function create_p_t_point(planeHeight, visible, t) {
     const sphere = new THREE.Mesh(circumferencePointGeometry, material);
     sphere.visible = visible;
 
-    position = createPointOnIntersectionCircle(planeHeight, t);
+    position = calculateCirclePoint(planeHeight, t);
     sphere.position.copy(position);
     return sphere;
 }

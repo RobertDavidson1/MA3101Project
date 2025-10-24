@@ -24,7 +24,7 @@ function createCircle(planeHeight, visibile) {
     const points = [];
     for (let k = 0; k < segments; k++) {
         const t = (k / segments) * 2 * Math.PI;
-        curr_point = createPointOnIntersectionCircle(planeHeight, t);
+        curr_point = calculateCirclePoint(planeHeight, t);
         points.push(curr_point);
     }
     const geometry = new THREE.BufferGeometry().setFromPoints(points);

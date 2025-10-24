@@ -23,7 +23,7 @@ function calculateCircleCenter(planeHeight) {
 // Creats a point on the circle formed by the intersection of the plane and the sphere
 // planeHeight: The height of the plane
 // t: The angle around the circle
-function createPointOnIntersectionCircle(planeHeight, t) {
+function calculateCirclePoint(planeHeight, t) {
     // i and j hat vectors
     const i = new THREE.Vector3(1, 0, 0);
     const j = new THREE.Vector3(0, 1, 0);
