@@ -1,9 +1,3 @@
-function getColor(cssVar) {
-    return getComputedStyle(document.documentElement)
-        .getPropertyValue(cssVar)
-        .trim();
-}
-
 function cosT(t) {
     return Math.cos(t);
 }
