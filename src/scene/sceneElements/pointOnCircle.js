@@ -24,7 +24,6 @@ export function create_p_t_vector(t, planeHeight, visible) {
 
     const position = calculateCirclePoint(planeHeight, t);
 
-    length = position;
     const direction = position.clone().sub(C).normalize();
     const p_tVector = new THREE.ArrowHelper(
         direction,
