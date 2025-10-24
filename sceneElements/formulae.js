@@ -46,3 +46,24 @@ function calculateCirclePoint(planeHeight, t) {
     // Return the point as a THREE.Vector3
     return new THREE.Vector3(x, y, z);
 }
+
+// Gradient = (2x, 2y, 2z)
+function calculateGradient(p, normalize = false) {
+    const gradient = new THREE.Vector3(2 * p.x, 2 * p.y, 2 * p.z);
+    if (normalize) {
+        return gradient.normalize();
+    }
+
+    return gradient;
+}
+
+function calculateAcceleration(p, planeHeight, normalize = false) {
+    const C = calculateCircleCenter(planeHeight);
+    const acceleration = C.clone().sub(p); // C - p(t)
+
+    if (normalize) {
+        return acceleration.normalize();
+    }
+
+    return acceleration;
+}
