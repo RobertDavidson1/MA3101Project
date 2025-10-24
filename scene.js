@@ -54,11 +54,11 @@ manager.addElement(
 
 manager.addElement(
     'cosVectorTip',
-    createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+    createCosineCompletion(p.t, p.planeHeight, p.showCosSinVectors),
 );
 manager.addElement(
     'sinVectorTip',
-    createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+    createSinCompletion(p.t, p.planeHeight, p.showCosSinVectors),
 );
 manager.addElement(
     'p_t_vector',
@@ -66,6 +66,15 @@ manager.addElement(
 );
 manager.addElement('circle', createCircle(p.planeHeight, p.showCircle));
 manager.addElement('p_t', create_p_t_point(p.planeHeight, p.show_p_t, p.t));
+manager.addElement(
+    'sphereNormal',
+    createSphereNormal(p.t, p.planeHeight, p.showNormal),
+);
+
+manager.addElement(
+    'accelerationVector',
+    createAcclerationVector(p.t, p.planeHeight, p.showAcceleration),
+);
 
 // Animation loop
 function animate() {
