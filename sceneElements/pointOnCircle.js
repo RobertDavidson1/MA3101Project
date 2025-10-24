@@ -19,8 +19,6 @@ function create_p_t_point(planeHeight, visible, t) {
 }
 
 function create_p_t_vector(t, planeHeight, visible) {
-    
-    
     const C = calculateCircleCenter(planeHeight);
     const r = calculateRadius(planeHeight);
 
@@ -33,8 +31,8 @@ function create_p_t_vector(t, planeHeight, visible) {
         C,
         r,
         getColor('--violet'),
-        r * 0.15,
-        r * 0.15,
+        r * 0.1,
+        r * 0.1,
     );
 
     p_tVector.visible = visible;
