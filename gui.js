@@ -11,9 +11,11 @@ const p = {
     showCircle: true,
     show_p_t: true,
     showCosSinVectors: false,
+    showNormal: true,
     show_p_t_vector: true,
     planeHeight: 0.0,
     t: Math.PI / 4,
+    showAcceleration: true,
 };
 
 //////////////////////////////////////////
@@ -105,11 +107,11 @@ VisibilityFolder.addInput(p, 'showCosSinVectors', {
         );
         manager.updateElement(
             'cosVectorTip',
-            createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+            createCosineCompletion(p.t, p.planeHeight, p.showCosSinVectors),
         );
         manager.updateElement(
             'sinVectorTip',
-            createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+            createSinCompletion(p.t, p.planeHeight, p.showCosSinVectors),
         );
     }
 });
@@ -178,9 +180,9 @@ ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
 
 ControlsFolder.addInput(p, 'planeHeight', {
     label: 'h (plane height)',
-    min: -1.0,
-    max: 1.0,
-    step: 0.01,
+    min: -0.99,
+    max: 0.99,
+    step: 0.1,
 }).on('change', (ev) => {
     // Update plane position
     const planeElement = manager.getElement('plane');
@@ -191,6 +193,20 @@ ControlsFolder.addInput(p, 'planeHeight', {
     // Only update elements if they're visible - avoids unnecessary re-rendering
     if (manager.getElement('circle')?.visible) {
         manager.updateElement('circle', createCircle(ev.value, p.showCircle));
+    }
+
+    if (manager.getElement('sphereNormal')?.visible) {
+        manager.updateElement(
+            'sphereNormal',
+            createSphereNormal(p.t, ev.value, p.showNormal),
+        );
+    }
+
+    if (manager.getElement('accelerationVector')?.visible) {
+        manager.updateElement(
+            'accelerationVector',
+            createAcclerationVector(p.t, ev.value, p.showAcceleration),
+        );
     }
 
     if (manager.getElement('p_t')?.visible) {
@@ -218,11 +234,11 @@ ControlsFolder.addInput(p, 'planeHeight', {
         );
         manager.updateElement(
             'cosVectorTip',
-            createCosVectorTip(p.t, ev.value, p.showCosSinVectors),
+            createCosineCompletion(p.t, ev.value, p.showCosSinVectors),
         );
         manager.updateElement(
             'sinVectorTip',
-            createSinVectorTip(p.t, ev.value, p.showCosSinVectors),
+            createSinCompletion(p.t, ev.value, p.showCosSinVectors),
         );
     }
 
@@ -241,13 +257,31 @@ ControlsFolder.addInput(p, 'planeHeight', {
 ControlsFolder.addInput(p, 't', {
     label: 't (angle around circle)',
     min: 0.0,
-    max: 2 * Math.PI,
+    max: 4 * Math.PI,
     step: 0.01,
 }).on('change', (ev) => {
     if (manager.getElement('p_t')?.visible) {
         manager.updateElement(
             'p_t',
             create_p_t_point(p.planeHeight, p.show_p_t, ev.value),
+        );
+    }
+
+    if (manager.getElement('sphereNormal')?.visible) {
+        manager.updateElement(
+            'sphereNormal',
+            createSphereNormal(ev.value, p.planeHeight, p.showNormal),
+        );
+    }
+
+    if (manager.getElement('accelerationVector')?.visible) {
+        manager.updateElement(
+            'accelerationVector',
+            createAcclerationVector(
+                ev.value,
+                p.planeHeight,
+                p.showAcceleration,
+            ),
         );
     }
 
@@ -262,11 +296,15 @@ ControlsFolder.addInput(p, 't', {
         );
         manager.updateElement(
             'cosVectorTip',
-            createCosVectorTip(ev.value, p.planeHeight, p.showCosSinVectors),
+            createCosineCompletion(
+                ev.value,
+                p.planeHeight,
+                p.showCosSinVectors,
+            ),
         );
         manager.updateElement(
             'sinVectorTip',
-            createSinVectorTip(ev.value, p.planeHeight, p.showCosSinVectors),
+            createSinCompletion(ev.value, p.planeHeight, p.showCosSinVectors),
         );
     }
 
@@ -276,4 +314,35 @@ ControlsFolder.addInput(p, 't', {
             create_p_t_vector(ev.value, p.planeHeight, p.show_p_t_vector),
         );
     }
+});
+
+ControlsFolder.addBlade({
+    view: 'separator',
+});
+
+ControlsFolder.addButton({
+    title: 'Snap to XY Plane',
+}).on('click', () => {
+    // Look straight down Z-axis
+    camera.position.set(0, 0, 5);
+    camera.lookAt(0, 0, 0);
+    controls.update();
+});
+
+ControlsFolder.addButton({
+    title: 'Snap to XZ Plane',
+}).on('click', () => {
+    // Look along Y-axis
+    camera.position.set(0, 5, 0);
+    camera.lookAt(0, 0, 0);
+    controls.update();
+});
+
+ControlsFolder.addButton({
+    title: 'Snap to YZ Plane',
+}).on('click', () => {
+    // Look along X-axis
+    camera.position.set(5, 0, 0);
+    camera.lookAt(0, 0, 0);
+    controls.update();
 });
