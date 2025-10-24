@@ -7,7 +7,7 @@ function create_p_t_point(planeHeight, visible, t) {
 
     const material = new THREE.MeshBasicMaterial({
         color: getColor('--violet'),
-        depthTest: false,
+        depthTest: true,
     });
 
     const sphere = new THREE.Mesh(circumferencePointGeometry, material);
@@ -19,22 +19,24 @@ function create_p_t_point(planeHeight, visible, t) {
 }
 
 function create_p_t_vector(t, planeHeight, visible) {
-    const cos_T = cosT(t);
+    
+    
     const C = calculateCircleCenter(planeHeight);
     const r = calculateRadius(planeHeight);
 
-    const x = C.x + r * Math.cos(t);
-    const y = C.y + r * Math.sin(t);
-    const z = planeHeight;
+    const position = calculateCirclePoint(planeHeight, t);
 
-    const p_t = new THREE.Vector3(x, y, z);
+    length = position;
+    const direction = position.clone().sub(C).normalize();
+    const p_tVector = new THREE.ArrowHelper(
+        direction,
+        C,
+        r,
+        getColor('--violet'),
+        r * 0.15,
+        r * 0.15,
+    );
 
-    const geometry = new THREE.BufferGeometry().setFromPoints([C, p_t]);
-    const material = new THREE.LineBasicMaterial({
-        color: getColor('--violet'),
-    });
-
-    const p_tVector = new THREE.Line(geometry, material);
     p_tVector.visible = visible;
     return p_tVector;
 }
