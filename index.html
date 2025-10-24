@@ -6,6 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/colors.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="icon" type="image/png" sizes="64x64" href="image/64.png" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="128x128"
+            href="image/128.png"
+        />
         <!-- Tweakpane Components -->
         <script src="https://unpkg.com/tweakpane@3.1.10/dist/tweakpane.js"></script>
         <!-- Three.js -->
@@ -26,7 +33,8 @@
                 height="40"
             />
         </div>
-        <script src="src/TweakPane/gui.js"></script>
+        <script type="module" src="src/scene/sceneElements/index.js"></script>
+        <script type="module" src="src/TweakPane/gui.js"></script>
         <script type="module" src="src/main.js"></script>
         <script src="src/utils/getColor.js"></script>
         <script src="src/utils/math.js"></script>
