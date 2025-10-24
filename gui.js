@@ -20,20 +20,20 @@ const p = {
 //           Visibility Folder          //
 //////////////////////////////////////////
 
-VisbilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
+VisibilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
 
-VisbilityFolder.addInput(p, 'showAxes', {
+VisibilityFolder.addInput(p, 'showAxes', {
     label: 'Axes',
 }).on('change', (ev) => {
     axes.visible = ev.value;
 });
 
-VisbilityFolder.addInput(p, 'showWireframe', {
+VisibilityFolder.addInput(p, 'showWireframe', {
     label: 'Sphere',
 }).on('change', (ev) => {
     sphere.visible = ev.value;
 });
-VisbilityFolder.addInput(p, 'showCircleCenter', {
+VisibilityFolder.addInput(p, 'showCircleCenter', {
     label: 'Circle Center',
 }).on('change', (ev) => {
     circleCenter.visible = ev.value;
@@ -45,7 +45,7 @@ VisbilityFolder.addInput(p, 'showCircleCenter', {
     }
 });
 
-VisbilityFolder.addInput(p, 'starCount', {
+VisibilityFolder.addInput(p, 'starCount', {
     label: 'Num Stars',
     min: 0,
     max: 20000,
@@ -59,13 +59,13 @@ VisbilityFolder.addInput(p, 'starCount', {
     scene.add(stars);
 });
 
-VisbilityFolder.addInput(p, 'showPlane', {
+VisibilityFolder.addInput(p, 'showPlane', {
     label: 'Plane',
 }).on('change', (ev) => {
     plane.visible = ev.value;
 });
 
-VisbilityFolder.addInput(p, 'showCosSinVectors', {
+VisibilityFolder.addInput(p, 'showCosSinVectors', {
     label: 'Cos & Sin Vectors',
 }).on('change', (ev) => {
     cosVector.visible = ev.value;
@@ -100,7 +100,7 @@ VisbilityFolder.addInput(p, 'showCosSinVectors', {
     }
 });
 
-VisbilityFolder.addInput(p, 'showCircle', {
+VisibilityFolder.addInput(p, 'showCircle', {
     label: 'Circle',
 }).on('change', (ev) => {
     circle.visible = ev.value;
@@ -113,7 +113,7 @@ VisbilityFolder.addInput(p, 'showCircle', {
     }
 });
 
-VisbilityFolder.addInput(p, 'show_p_t', {
+VisibilityFolder.addInput(p, 'show_p_t', {
     label: 'p_t (point)',
 }).on('change', (ev) => {
     p_t.visible = ev.value;
@@ -125,7 +125,7 @@ VisbilityFolder.addInput(p, 'show_p_t', {
     }
 });
 
-VisbilityFolder.addInput(p, 'show_p_t_vector', {
+VisibilityFolder.addInput(p, 'show_p_t_vector', {
     label: 'p_t (vector)',
 }).on('change', (ev) => {
     p_t_vector.visible = ev.value;
