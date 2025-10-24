@@ -32,36 +32,40 @@ const controls = new THREE.OrbitControls(camera, renderer.domElement); // Enable
 controls.enableDamping = true; // Enable damping for smoother movement
 controls.maxDistance = Math.sqrt(30 * 30 + 30 * 30 + 30 * 30); // Limit max camera distance to (30,30,30)
 
-// Scene elements
-axes = createAxes(p.showAxes);
-stars = createStars(p.starCount);
-plane = createPlane(p.showPlane);
+// Setup SceneManager
+manager = new SceneManager(scene);
 
-sphere = createSphere(p.showSphere);
-circleCenter = createCircleCenter(p.planeHeight, p.showCircleCenter);
-cosVector = createCosVector(p.t, p.planeHeight, p.showCosSinVectors);
-sinVector = createSinVector(p.t, p.planeHeight, p.showCosSinVectors);
-cosVectorTip = createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors);
-sinVectorTip = createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors);
-p_t_vector = create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector);
+manager.addElement('axes', createAxes(p.showAxes));
+manager.addElement('stars', createStars(p.starCount));
+manager.addElement('plane', createPlane(p.showPlane));
+manager.addElement('sphere', createSphere(p.showSphere));
+manager.addElement(
+    'circleCenter',
+    createCircleCenter(p.planeHeight, p.showCircleCenter),
+);
+manager.addElement(
+    'sinVector',
+    createSinVector(p.t, p.planeHeight, p.showCosSinVectors),
+);
+manager.addElement(
+    'cosVector',
+    createCosVector(p.t, p.planeHeight, p.showCosSinVectors),
+);
 
-circle = createCircle(p.planeHeight, p.showCircle);
-p_t = create_p_t_point(p.planeHeight, p.show_p_t, p.t);
-
-// Add scene elements to the scene
-
-scene.add(axes);
-scene.add(stars);
-scene.add(plane);
-scene.add(sphere);
-scene.add(circleCenter);
-scene.add(cosVector);
-scene.add(sinVector);
-scene.add(cosVectorTip);
-scene.add(sinVectorTip);
-scene.add(p_t_vector);
-scene.add(circle);
-scene.add(p_t);
+manager.addElement(
+    'cosVectorTip',
+    createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+);
+manager.addElement(
+    'sinVectorTip',
+    createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+);
+manager.addElement(
+    'p_t_vector',
+    create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector),
+);
+manager.addElement('circle', createCircle(p.planeHeight, p.showCircle));
+manager.addElement('p_t', create_p_t_point(p.planeHeight, p.show_p_t, p.t));
 
 // Animation loop
 function animate() {
