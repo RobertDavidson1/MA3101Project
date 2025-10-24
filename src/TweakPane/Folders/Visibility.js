@@ -1,4 +1,4 @@
-import { p } from '../paramaters.js';
+import { p } from '../parameters.js';
 
 //////////////////////////////////////////
 //           Visibility Folder          //
