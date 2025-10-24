@@ -22,28 +22,45 @@ const p = {
 
 VisibilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
 
+////////////////////////////////
+//       axes visibility      //
+////////////////////////////////
+
 VisibilityFolder.addInput(p, 'showAxes', {
     label: 'Axes',
 }).on('change', (ev) => {
-    axes.visible = ev.value;
+    manager.setVisibility('axes', ev.value);
 });
+
+////////////////////////////////
+//      sphere visibility     //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'showWireframe', {
     label: 'Sphere',
 }).on('change', (ev) => {
-    sphere.visible = ev.value;
+    manager.setVisibility('sphere', ev.value);
 });
+////////////////////////////////
+//   circle center visibility //
+////////////////////////////////
+
 VisibilityFolder.addInput(p, 'showCircleCenter', {
     label: 'Circle Center',
 }).on('change', (ev) => {
-    circleCenter.visible = ev.value;
+    manager.setVisibility('circleCenter', ev.value);
 
     if (ev.value === true) {
-        scene.remove(circleCenter);
-        circleCenter = createCircleCenter(p.planeHeight, p.showCircleCenter);
-        scene.add(circleCenter);
+        manager.updateElement(
+            'circleCenter',
+            createCircleCenter(p.planeHeight, p.showCircleCenter),
+        );
     }
 });
+
+////////////////////////////////
+//      stars visibility      //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'starCount', {
     label: 'Num Stars',
@@ -51,89 +68,101 @@ VisibilityFolder.addInput(p, 'starCount', {
     max: 20000,
     step: 1000,
 }).on('change', (ev) => {
-    // Remove the old star field
-    scene.remove(stars);
-
-    // Create new star field with updated count
-    stars = createStars(ev.value);
-    scene.add(stars);
+    // Update star field with new count
+    manager.updateElement('stars', createStars(ev.value));
 });
+
+////////////////////////////////
+//      plane visibility      //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'showPlane', {
     label: 'Plane',
 }).on('change', (ev) => {
-    plane.visible = ev.value;
+    manager.setVisibility('plane', ev.value);
 });
+
+////////////////////////////////
+//   cos/sin vectors visibility //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'showCosSinVectors', {
     label: 'Cos & Sin Vectors',
 }).on('change', (ev) => {
-    cosVector.visible = ev.value;
-    sinVector.visible = ev.value;
-    cosVectorTip.visible = ev.value;
-    sinVectorTip.visible = ev.value;
+    manager.setVisibility('cosVector', ev.value);
+    manager.setVisibility('sinVector', ev.value);
+    manager.setVisibility('cosVectorTip', ev.value);
+    manager.setVisibility('sinVectorTip', ev.value);
 
     if (ev.value === true) {
-        scene.remove(cosVector);
-        cosVector = createCosVector(p.t, p.planeHeight, p.showCosSinVectors);
-        scene.add(cosVector);
-
-        scene.remove(sinVector);
-        sinVector = createSinVector(p.t, p.planeHeight, p.showCosSinVectors);
-        scene.add(sinVector);
-
-        scene.remove(cosVectorTip);
-        cosVectorTip = createCosVectorTip(
-            p.t,
-            p.planeHeight,
-            p.showCosSinVectors,
+        manager.updateElement(
+            'cosVector',
+            createCosVector(p.t, p.planeHeight, p.showCosSinVectors),
         );
-        scene.add(cosVectorTip);
-
-        scene.remove(sinVectorTip);
-        sinVectorTip = createSinVectorTip(
-            p.t,
-            p.planeHeight,
-            p.showCosSinVectors,
+        manager.updateElement(
+            'sinVector',
+            createSinVector(p.t, p.planeHeight, p.showCosSinVectors),
         );
-        scene.add(sinVectorTip);
+        manager.updateElement(
+            'cosVectorTip',
+            createCosVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'sinVectorTip',
+            createSinVectorTip(p.t, p.planeHeight, p.showCosSinVectors),
+        );
     }
 });
+
+////////////////////////////////
+//      circle visibility      //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'showCircle', {
     label: 'Circle',
 }).on('change', (ev) => {
-    circle.visible = ev.value;
+    manager.setVisibility('circle', ev.value);
 
     // If turned back on, re-create the circle with the new plane height
     if (ev.value === true) {
-        scene.remove(circle);
-        circle = createCircle(p.planeHeight, p.showCircle);
-        scene.add(circle);
+        manager.updateElement(
+            'circle',
+            createCircle(p.planeHeight, p.showCircle),
+        );
     }
 });
+
+////////////////////////////////
+//      p_t point visibility   //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'show_p_t', {
     label: 'p_t (point)',
 }).on('change', (ev) => {
-    p_t.visible = ev.value;
+    manager.setVisibility('p_t', ev.value);
 
     if (ev.value === true) {
-        scene.remove(p_t);
-        p_t = create_p_t_point(p.planeHeight, p.show_p_t, p.t);
-        scene.add(p_t);
+        manager.updateElement(
+            'p_t',
+            create_p_t_point(p.planeHeight, p.show_p_t, p.t),
+        );
     }
 });
+
+////////////////////////////////
+//     p_t vector visibility   //
+////////////////////////////////
 
 VisibilityFolder.addInput(p, 'show_p_t_vector', {
     label: 'p_t (vector)',
 }).on('change', (ev) => {
-    p_t_vector.visible = ev.value;
+    manager.setVisibility('p_t_vector', ev.value);
 
     if (ev.value === true) {
-        scene.remove(p_t_vector);
-        p_t_vector = create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector);
-        scene.add(p_t_vector);
+        manager.updateElement(
+            'p_t_vector',
+            create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector),
+        );
     }
 });
 
@@ -142,61 +171,72 @@ VisibilityFolder.addInput(p, 'show_p_t_vector', {
 //////////////////////////////////////////
 
 ControlsFolder = pane.addFolder({ title: 'Controls', expanded: true });
+
+////////////////////////////////
+//          h controls        //
+////////////////////////////////
+
 ControlsFolder.addInput(p, 'planeHeight', {
     label: 'h (plane height)',
     min: -1.0,
     max: 1.0,
     step: 0.01,
 }).on('change', (ev) => {
-    plane.position.z = ev.value;
-
-    // Only update the circle if its visible - avoids uncessary re-rendering
-    if (circle.visible == true) {
-        scene.remove(circle);
-        circle = createCircle(ev.value, p.showCircle);
-        scene.add(circle);
+    // Update plane position
+    const planeElement = manager.getElement('plane');
+    if (planeElement) {
+        planeElement.position.z = ev.value;
     }
 
-    if (p_t.visible == true) {
-        scene.remove(p_t);
-        p_t = create_p_t_point(ev.value, p.show_p_t, p.t);
-        scene.add(p_t);
+    // Only update elements if they're visible - avoids unnecessary re-rendering
+    if (manager.getElement('circle')?.visible) {
+        manager.updateElement('circle', createCircle(ev.value, p.showCircle));
     }
 
-    if (circleCenter.visible == true) {
-        scene.remove(circleCenter);
-        circleCenter = createCircleCenter(ev.value, p.showCircleCenter);
-        scene.add(circleCenter);
-    }
-
-    if (p.showCosSinVectors == true) {
-        scene.remove(cosVector);
-        cosVector = createCosVector(p.t, ev.value, p.showCosSinVectors);
-        scene.add(cosVector);
-
-        scene.remove(sinVector);
-        sinVector = createSinVector(p.t, ev.value, p.showCosSinVectors);
-        scene.add(sinVector);
-
-        scene.remove(cosVectorTip);
-        cosVectorTip = createCosVectorTip(p.t, ev.value, p.showCosSinVectors);
-        scene.add(cosVectorTip);
-
-        scene.remove(sinVectorTip);
-        sinVectorTip = createSinVectorTip(p.t, ev.value, p.showCosSinVectors);
-        scene.add(sinVectorTip);
-    }
-
-    if (p.show_p_t_vector == true) {
-        scene.remove(p_t_vector);
-        p_t_vector = create_p_t_vector(
-            ev.value,
-            p.planeHeight,
-            p.show_p_t_vector,
+    if (manager.getElement('p_t')?.visible) {
+        manager.updateElement(
+            'p_t',
+            create_p_t_point(ev.value, p.show_p_t, p.t),
         );
-        scene.add(p_t_vector);
+    }
+
+    if (manager.getElement('circleCenter')?.visible) {
+        manager.updateElement(
+            'circleCenter',
+            createCircleCenter(ev.value, p.showCircleCenter),
+        );
+    }
+
+    if (p.showCosSinVectors) {
+        manager.updateElement(
+            'cosVector',
+            createCosVector(p.t, ev.value, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'sinVector',
+            createSinVector(p.t, ev.value, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'cosVectorTip',
+            createCosVectorTip(p.t, ev.value, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'sinVectorTip',
+            createSinVectorTip(p.t, ev.value, p.showCosSinVectors),
+        );
+    }
+
+    if (p.show_p_t_vector) {
+        manager.updateElement(
+            'p_t_vector',
+            create_p_t_vector(p.t, ev.value, p.show_p_t_vector),
+        );
     }
 });
+
+////////////////////////////////
+//          t controls        //
+////////////////////////////////
 
 ControlsFolder.addInput(p, 't', {
     label: 't (angle around circle)',
@@ -204,52 +244,36 @@ ControlsFolder.addInput(p, 't', {
     max: 2 * Math.PI,
     step: 0.01,
 }).on('change', (ev) => {
-    if (p_t.visible == true) {
-        scene.remove(p_t);
-        p_t = create_p_t_point(p.planeHeight, p.show_p_t, ev.value);
-        scene.add(p_t);
-    }
-    if (p.showCosSinVectors == true) {
-        scene.remove(cosVector);
-        cosVector = createCosVector(
-            ev.value,
-            p.planeHeight,
-            p.showCosSinVectors,
+    if (manager.getElement('p_t')?.visible) {
+        manager.updateElement(
+            'p_t',
+            create_p_t_point(p.planeHeight, p.show_p_t, ev.value),
         );
-        scene.add(cosVector);
-
-        scene.remove(sinVector);
-        sinVector = createSinVector(
-            ev.value,
-            p.planeHeight,
-            p.showCosSinVectors,
-        );
-        scene.add(sinVector);
-
-        scene.remove(cosVectorTip);
-        cosVectorTip = createCosVectorTip(
-            ev.value,
-            p.planeHeight,
-            p.showCosSinVectors,
-        );
-        scene.add(cosVectorTip);
-
-        scene.remove(sinVectorTip);
-        sinVectorTip = createSinVectorTip(
-            ev.value,
-            p.planeHeight,
-            p.showCosSinVectors,
-        );
-        scene.add(sinVectorTip);
     }
 
-    if (p.show_p_t_vector == true) {
-        scene.remove(p_t_vector);
-        p_t_vector = create_p_t_vector(
-            ev.value,
-            p.planeHeight,
-            p.show_p_t_vector,
+    if (p.showCosSinVectors) {
+        manager.updateElement(
+            'cosVector',
+            createCosVector(ev.value, p.planeHeight, p.showCosSinVectors),
         );
-        scene.add(p_t_vector);
+        manager.updateElement(
+            'sinVector',
+            createSinVector(ev.value, p.planeHeight, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'cosVectorTip',
+            createCosVectorTip(ev.value, p.planeHeight, p.showCosSinVectors),
+        );
+        manager.updateElement(
+            'sinVectorTip',
+            createSinVectorTip(ev.value, p.planeHeight, p.showCosSinVectors),
+        );
+    }
+
+    if (p.show_p_t_vector) {
+        manager.updateElement(
+            'p_t_vector',
+            create_p_t_vector(ev.value, p.planeHeight, p.show_p_t_vector),
+        );
     }
 });
