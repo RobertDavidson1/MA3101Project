@@ -1,8 +1,16 @@
 \documentclass[11pt]{article}
 \usepackage{changepage}
 \usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{amssymb}
 \usepackage{amsmath}
+
+\definecolor{linkblue}{RGB}{21 94 117}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=linkblue,
+}
+
 \begin{document}
 
 \begin{center}
@@ -23,7 +31,7 @@
 \subsection*{Why this project?}
 In my Euclidean and Non Euclidean Geometry lectures, we learned that if the acceleration vector of a curve is always normal to the tangent plane, then the curve is a geodesic\\[0.5ex]
 On the sphere, $S^2$, every geodesic is a great circle, which is circle formed a plane through the sphere's center. \\[0.5ex]
-I was really intrigued by this result, and I wanted to find a way to visualise it, which led me to build an interactive visualization, which is avilable at \href{https://robertdavidson1.github.io/MA3101Project/}{this website} hosted on GitHub.
+I was really intrigued by this result, and I wanted to find a way to visualise it, which led me to build an interactive visualization, which is avilable at this \href{https://robertdavidson1.github.io/MA3101Project/}{\textbf{website}} hosted on GitHub.
 This brief writeup covers the mathematics I did to both understand why the statement is true, and to create the website.
 
 \subsection*{The Motivation}
@@ -38,8 +46,8 @@ We define the 2-sphere, $S^2$, as the set of all points in $\mathbb{R}^3$ such t
 $$x^2 + y^2 + z^2 = 1$$
 This represents a sphere of radius 1 centered at the origin. \\
 The normal vector at a point $\mathbf{s} = (x, y, z)$ on the 2-sphere is the vector perpendicular to the tangent plane at that point. \\
-It is given by the gradient of the function $f(x,y,z) = x^2 + y^2 + z^2 - 1$:
-$$\mathbf{n}_{S^2} = \nabla f(\mathbf{s}) = (2x, 2y, 2z) = 2\textbf{s}$$
+It is given by the gradient of the function $F(x,y,z) = x^2 + y^2 + z^2 - 1$:
+$$\mathbf{n}^{(S)} = \nabla F(\mathbf{p}) = (2x, 2y, 2z) = 2\textbf{p}$$
 So, the normal vector is just a scalar multiple of the position vector.
 \subsection*{The Plane}
 A plane $P$ can be written as:
@@ -132,7 +140,11 @@ So when $h = 0$,that is, when the plane cuts the 2-Sphere through the origin, we
 The acceleration vector around this circle is just a scalar multiple of the position vector, which is the same as the sphere's normal vector. \\
 Therefore, in order for the acceleration vector to be normal to the tangent plane, the curve must be a great circle, and thus a geodesic.
 \pagebreak
-\section*{Acknowledgements}
-I used ChatGPT to help verify the algebraic derivations and ensure the mathematical reasoning in this write-up was correct.
+\subsection*{Resources}
+\begin{itemize}
+    \item I used ChatGPT to help verify the algebraic derivations and ensure the mathematical reasoning in this write-up was correct.
+    \item \href{https://www.wikiwand.com/en/articles/Normal_(geometry)}{Wikipedia for Surface Normal}:
+          \textit {If a surface $S$ is given implicitly as the set of points  $(x,y,z)$}, then a normal at point $(x,y,z)$ on the surface is given by the gradient $\textbf{n} = \nabla F(x,y,z)$
+\end{itemize}
 
 \end{document}
