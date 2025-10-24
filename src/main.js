@@ -1,23 +1,5 @@
-import {
-    createAxes,
-    createCircle,
-    createCircleCenter,
-    createPlane,
-    create_p_t_point,
-    create_p_t_vector,
-    createSphere,
-    createSphereCenter,
-    createStars,
-    createCosVector,
-    createSinVector,
-    createCosineCompletion,
-    createSinCompletion,
-    createSphereNormal,
-    createAcclerationVector,
-} from './scene/sceneElements/index.js';
-
 import { SceneManager } from './core/SceneManager.js';
-
+import { p } from './TweakPane/parameters.js';
 // Make camera and controls globally available
 window.camera = camera;
 window.controls = controls;
@@ -67,6 +49,23 @@ manager.addElement(
     'accelerationVector',
     createAcclerationVector(p.t, p.planeHeight, p.showAcceleration),
 );
+
+// Make create functions globally available for gui.js
+window.createAxes = createAxes;
+window.createCircle = createCircle;
+window.createCircleCenter = createCircleCenter;
+window.createPlane = createPlane;
+window.create_p_t_point = create_p_t_point;
+window.create_p_t_vector = create_p_t_vector;
+window.createSphere = createSphere;
+window.createSphereCenter = createSphereCenter;
+window.createStars = createStars;
+window.createCosVector = createCosVector;
+window.createSinVector = createSinVector;
+window.createCosineCompletion = createCosineCompletion;
+window.createSinCompletion = createSinCompletion;
+window.createSphereNormal = createSphereNormal;
+window.createAcclerationVector = createAcclerationVector;
 
 // Animation loop
 function animate() {
