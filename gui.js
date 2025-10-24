@@ -16,6 +16,7 @@ const p = {
     planeHeight: 0.0,
     t: Math.PI / 4,
     showAcceleration: true,
+    showSphereCenter: true,
 };
 
 //////////////////////////////////////////
@@ -32,6 +33,16 @@ VisibilityFolder.addInput(p, 'showAxes', {
     label: 'Axes',
 }).on('change', (ev) => {
     manager.setVisibility('axes', ev.value);
+});
+
+////////////////////////////////
+//       sphere center        //
+////////////////////////////////
+
+VisibilityFolder.addInput(p, 'showSphereCenter', {
+    label: 'Sphere Center',
+}).on('change', (ev) => {
+    manager.setVisibility('sphereCenter', ev.value);
 });
 
 ////////////////////////////////
