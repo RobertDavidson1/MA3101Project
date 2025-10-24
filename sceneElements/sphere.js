@@ -22,3 +22,21 @@ function createSphere(visible) {
     sphere.visible = visible;
     return sphere;
 }
+
+function createSphereCenter(visible) {
+    const circumferencePointGeometry = new THREE.SphereGeometry(
+        0.025, // radius
+        32, // width segments
+        32, // height segments
+    );
+
+    const material = new THREE.MeshBasicMaterial({
+        color: getColor('--nuetral-500'),
+        depthTest: true,
+    });
+
+    const circleCenter = new THREE.Mesh(circumferencePointGeometry, material);
+    circleCenter.visible = visible;
+
+    return circleCenter;
+}
