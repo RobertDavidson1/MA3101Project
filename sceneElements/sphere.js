@@ -7,10 +7,10 @@ function createSphere(visible) {
 
     // Create a material for the sphere
     const sphereMaterial = new THREE.MeshBasicMaterial({
-        color: getColor('--neutral-50'),
+        color: getColor('--nuetral-500'),
         wireframe: true,
         transparent: true,
-        opacity: 0.1,
+        opacity: 0.05,
     });
 
     // Take the geometry and material and form a mesh
