@@ -12,7 +12,7 @@ const p = {
     show_p_t: true,
     showCosSinVectors: false,
     showNormal: true,
-    show_p_t_vector: true,
+    show_p_t_vector: false,
     planeHeight: 0.0,
     t: Math.PI / 4,
     showAcceleration: true,
@@ -22,7 +22,7 @@ const p = {
 //           Visibility Folder          //
 //////////////////////////////////////////
 
-VisibilityFolder = pane.addFolder({ title: 'Visibility', expanded: false });
+VisibilityFolder = pane.addFolder({ title: 'Visibility', expanded: true });
 
 ////////////////////////////////
 //       axes visibility      //
@@ -32,6 +32,28 @@ VisibilityFolder.addInput(p, 'showAxes', {
     label: 'Axes',
 }).on('change', (ev) => {
     manager.setVisibility('axes', ev.value);
+});
+
+////////////////////////////////
+//  acceleration  visibility  //
+////////////////////////////////
+
+VisibilityFolder.addInput(p, 'showAcceleration', {
+    label: 'Acceleration Vector',
+}).on('change', (ev) => {
+    manager.setVisibility('accelerationVector', ev.value);
+});
+
+VisibilityFolder.addInput(p, 'showNormal', {
+    label: 'Normal Vector',
+}).on('change', (ev) => {
+    manager.setVisibility('sphereNormal', ev.value);
+});
+
+VisibilityFolder.addInput(p, 'showAcceleration', {
+    label: 'Acceleration Vector',
+}).on('change', (ev) => {
+    manager.setVisibility('accelerationVector', ev.value);
 });
 
 ////////////////////////////////
