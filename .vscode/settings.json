@@ -4,7 +4,7 @@
     "latex-workshop.latex.autoBuild.run": "onSave",
 
     // clean aux files automatically after a successful build
-    "latex-workshop.latex.clean.enabled": true,
+    
     "latex-workshop.latex.autoClean.run": "onBuilt",
 
     // optional: include more trash files
