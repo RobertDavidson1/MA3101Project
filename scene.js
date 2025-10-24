@@ -70,6 +70,7 @@ manager.addElement(
     'sphereNormal',
     createSphereNormal(p.t, p.planeHeight, p.showNormal),
 );
+manager.addElement('sphereCenter', createSphereCenter(p.showSphereCenter));
 
 manager.addElement(
     'accelerationVector',
