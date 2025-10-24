@@ -1,4 +1,19 @@
 {
+    // trigger builds on save/autosave
+    "files.autoSave": "afterDelay",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+
+    // clean aux files automatically after a successful build
+    "latex-workshop.latex.clean.enabled": true,
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+
+    // optional: include more trash files
+      "latex-workshop.latex.clean.fileTypes": [
+      "**/*.aux", "**/*.fls", "**/*.fdb_latexmk",
+      "**/*.log", "**/*.out", "**/*.toc", "**/*.synctex.gz",
+      "**/*.bbl", "**/*.blg"
+    ],
+
     "latex-workshop.latex.recipe.default": "latexmk",
     "latex-workshop.formatting.latex": "latexindent",
 
@@ -12,6 +27,14 @@
           "-file-line-error",
           "%DOC%"
         ]
+      },
+      {
+        "name": "latexmk-clean",
+        "command": "latexmk",
+        "args": [
+          "-c",
+          "%DOC%"
+        ]
       }
     ],
     "latex-workshop.latex.recipes": [
@@ -20,36 +43,7 @@
         "tools": ["latexmk"]
       }
     ],
-    "latex-workshop.latex.autoBuild.run": "onSave",
-        "latex-workshop.latex.clean.fileTypes": [
-    "*.aux",
-    "*.bbl",
-    "*.blg",
-    "*.idx",
-    "*.ind",
-    "*.lof",
-    "*.lot",
-    "*.out",
-    "*.toc",
-    "*.acn",
-    "*.acr",
-    "*.alg",
-    "*.glg",
-    "*.glo",
-    "*.gls",
-    "*.ist",
-    "*.fls",
-    "*.log",
-    "*.fdb_latexmk",
-    "*.snm",
-    "*.nav",
-    "*.vrb",
-    "*.run.xml",
-    "*.synctex(busy)",
-    "*.synctex",
-    "*.synctex.gz",
-    "**/*.synctex.gz"
-  ],
-  "latex-workshop.latex.clean.method": "glob",
-  "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.latex.clean.method": "glob",
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+ 
   }
