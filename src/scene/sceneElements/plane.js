@@ -1,6 +1,5 @@
 // Setting h = z makes rendering the plane cheaper
 export function createPlane(planeHeight, visible) {
-    const color = getColor(planeHeight === 0 ? '--green-950' : '--neutral-950');
     // Create a plane with a width and height of 1
     const planeGeometry = new THREE.PlaneGeometry(3, 3);
 
