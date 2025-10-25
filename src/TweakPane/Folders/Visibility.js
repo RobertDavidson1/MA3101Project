@@ -1,4 +1,9 @@
 import { p } from '../parameters.js';
+import { setLabelsVisible } from '../../scene/sceneElements/labels.js';
+
+
+
+
 
 //////////////////////////////////////////
 //           Visibility Folder          //
@@ -7,60 +12,79 @@ import { p } from '../parameters.js';
 export function createVisibilityFolder(pane) {
     const VisibilityFolder = pane.addFolder({
         title: 'Visibility',
-        expanded: true,
+        expanded: false,
     });
 
-    ////////////////////////////////
-    //       axes visibility      //
-    ////////////////////////////////
 
-    VisibilityFolder.addInput(p, 'showAxes', {
-        label: 'Axes',
+    ////////////////////////////////
+    //           All Labels       //
+    ////////////////////////////////
+        
+    VisibilityFolder.addInput(p, 'showLabels', {
+        label: 'All Labels',
     }).on('change', (ev) => {
-        manager.setVisibility('axes', ev.value);
+        setLabelsVisible(ev.value);
     });
-
+    
     ////////////////////////////////
-    //       sphere center        //
+    //      p_t point visibility  //
     ////////////////////////////////
 
-    VisibilityFolder.addInput(p, 'showSphereCenter', {
-        label: 'Sphere Center',
+    VisibilityFolder.addInput(p, 'show_p_t', {
+        label: 'p_t (point)',
     }).on('change', (ev) => {
-        manager.setVisibility('sphereCenter', ev.value);
+        manager.setVisibility('p_t', ev.value);
+
+        if (ev.value === true) {
+            manager.updateElement(
+                'p_t',
+                create_p_t_point(p.planeHeight, p.show_p_t, p.t),
+            );
+        }
     });
 
     ////////////////////////////////
-    //  acceleration  visibility  //
+    //      circle visibility      //
     ////////////////////////////////
 
-    VisibilityFolder.addInput(p, 'showAcceleration', {
-        label: 'Acceleration Vector',
+    VisibilityFolder.addInput(p, 'showCircle', {
+        label: 'Circle',
     }).on('change', (ev) => {
-        manager.setVisibility('accelerationVector', ev.value);
-    });
+        manager.setVisibility('circle', ev.value);
 
-    VisibilityFolder.addInput(p, 'showNormal', {
-        label: 'Normal Vector',
-    }).on('change', (ev) => {
-        manager.setVisibility('sphereNormal', ev.value);
-    });
-
-    VisibilityFolder.addInput(p, 'showAcceleration', {
-        label: 'Acceleration Vector',
-    }).on('change', (ev) => {
-        manager.setVisibility('accelerationVector', ev.value);
+        // If turned back on, re-create the circle with the new plane height
+        if (ev.value === true) {
+            manager.updateElement(
+                'circle',
+                createCircle(p.planeHeight, p.showCircle),
+            );
+        }
     });
 
     ////////////////////////////////
-    //      sphere visibility     //
+    //     simple controls        //
     ////////////////////////////////
 
-    VisibilityFolder.addInput(p, 'showWireframe', {
-        label: 'Sphere',
-    }).on('change', (ev) => {
-        manager.setVisibility('sphere', ev.value);
+    const controls = [
+        { param: 'showSphereCenter', label: 'Sphere Center', element: 'sphereCenter' },
+        { param: 'showAcceleration', label: 'Acceleration Vector', element: 'accelerationVector' },
+        { param: 'showNormal', label: 'Normal Vector', element: 'sphereNormal' },
+        { param: 'showWireframe', label: 'Sphere', element: 'sphere' },
+        { param: 'showPlane', label: 'Plane', element: 'plane' },
+        { param: 'showAxes', label: 'Axes', element: 'axes' },
+    ];
+
+     // Add all simple controls
+     controls.forEach(({ param, label, element }) => {
+        VisibilityFolder.addInput(p, param, { label }).on('change', (ev) => {
+            manager.setVisibility(element, ev.value);
+        });
     });
+
+
+    
+
+
     ////////////////////////////////
     //   circle center visibility //
     ////////////////////////////////
@@ -78,33 +102,9 @@ export function createVisibilityFolder(pane) {
         }
     });
 
-    ////////////////////////////////
-    //      stars visibility      //
-    ////////////////////////////////
+    
 
-    VisibilityFolder.addInput(p, 'starCount', {
-        label: 'Num Stars',
-        min: 0,
-        max: 20000,
-        step: 1000,
-    }).on('change', (ev) => {
-        // Update star field with new count
-        manager.updateElement('stars', createStars(ev.value));
-    });
-
-    ////////////////////////////////
-    //      plane visibility      //
-    ////////////////////////////////
-
-    VisibilityFolder.addInput(p, 'showPlane', {
-        label: 'Plane',
-    }).on('change', (ev) => {
-        manager.setVisibility('plane', ev.value);
-    });
-
-    ////////////////////////////////
-    //   cos/sin vectors visibility //
-    ////////////////////////////////
+    
 
     VisibilityFolder.addInput(p, 'showCosSinVectors', {
         label: 'Cos & Sin Vectors',
@@ -135,41 +135,6 @@ export function createVisibilityFolder(pane) {
     });
 
     ////////////////////////////////
-    //      circle visibility      //
-    ////////////////////////////////
-
-    VisibilityFolder.addInput(p, 'showCircle', {
-        label: 'Circle',
-    }).on('change', (ev) => {
-        manager.setVisibility('circle', ev.value);
-
-        // If turned back on, re-create the circle with the new plane height
-        if (ev.value === true) {
-            manager.updateElement(
-                'circle',
-                createCircle(p.planeHeight, p.showCircle),
-            );
-        }
-    });
-
-    ////////////////////////////////
-    //      p_t point visibility   //
-    ////////////////////////////////
-
-    VisibilityFolder.addInput(p, 'show_p_t', {
-        label: 'p_t (point)',
-    }).on('change', (ev) => {
-        manager.setVisibility('p_t', ev.value);
-
-        if (ev.value === true) {
-            manager.updateElement(
-                'p_t',
-                create_p_t_point(p.planeHeight, p.show_p_t, p.t),
-            );
-        }
-    });
-
-    ////////////////////////////////
     //     p_t vector visibility   //
     ////////////////////////////////
 
@@ -184,6 +149,21 @@ export function createVisibilityFolder(pane) {
                 create_p_t_vector(p.t, p.planeHeight, p.show_p_t_vector),
             );
         }
+    });
+
+
+    ////////////////////////////////
+    //      stars visibility      //
+    ////////////////////////////////
+
+    VisibilityFolder.addInput(p, 'starCount', {
+        label: 'Num Stars',
+        min: 0,
+        max: 20000,
+        step: 1000,
+    }).on('change', (ev) => {
+        // Update star field with new count
+        manager.updateElement('stars', createStars(ev.value));
     });
 
     return VisibilityFolder;
