@@ -1,3 +1,38 @@
+import { unregisterLabelSprite } from '../scene/sceneElements/labels.js';
+
+function disposeMaterial(material) {
+    if (!material) return;
+
+    if (Array.isArray(material)) {
+        material.forEach((mat) => disposeMaterial(mat));
+        return;
+    }
+
+    if (material.map) {
+        material.map.dispose();
+    }
+
+    material.dispose();
+}
+
+function disposeObject(object) {
+    if (!object) return;
+
+    object.traverse((child) => {
+        if (child.userData?.isLabelSprite) {
+            unregisterLabelSprite(child);
+        }
+
+        if (child.geometry) {
+            child.geometry.dispose();
+        }
+
+        if (child.material) {
+            disposeMaterial(child.material);
+        }
+    });
+}
+
 export class SceneManager {
     constructor(scene) {
         this.scene = scene;
@@ -31,8 +66,7 @@ export class SceneManager {
         this.scene.remove(oldElement);
 
         // Dispose of old element to prevent memory leaks
-        if (oldElement.geometry) oldElement.geometry.dispose();
-        if (oldElement.material) oldElement.material.dispose();
+        disposeObject(oldElement);
 
         // Add new element
         this.elements.set(name, newElement);
@@ -47,8 +81,7 @@ export class SceneManager {
             this.elements.delete(name);
 
             // Properly dispose of Three.js objects to prevent memory leaks
-            if (element.geometry) element.geometry.dispose();
-            if (element.material) element.material.dispose();
+            disposeObject(element);
         }
     }
 
