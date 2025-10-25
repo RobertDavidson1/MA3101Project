@@ -1,5 +1,6 @@
 // Parameters
 export const p = {
+    showLabels: true,
     showAxes: false,
     showWireframe: true,
     starCount: 1000,
