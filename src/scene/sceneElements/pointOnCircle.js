@@ -1,3 +1,5 @@
+import { createLabelSprite } from './labels.js';
+
 export function create_p_t_point(planeHeight, visible, t) {
     const circumferencePointGeometry = new THREE.SphereGeometry(
         0.025, // radius
@@ -15,7 +17,17 @@ export function create_p_t_point(planeHeight, visible, t) {
 
     const position = calculateCirclePoint(planeHeight, t);
     sphere.position.copy(position);
-    return sphere;
+
+    // Create label for the point
+    const label = createLabelSprite('p(t)', getColor('--violet'));
+    label.position.copy(position).add(new THREE.Vector3(0, 0.1, 0)); // Offset label slightly above the point
+
+    // Create a group to contain both the sphere and label
+    const group = new THREE.Group();
+    group.add(sphere, label);
+    group.visible = visible;
+    
+    return group;
 }
 
 export function create_p_t_vector(t, planeHeight, visible) {
@@ -33,6 +45,8 @@ export function create_p_t_vector(t, planeHeight, visible) {
         r * 0.1,
         r * 0.1,
     );
+
+    
 
     p_tVector.visible = visible;
     return p_tVector;
