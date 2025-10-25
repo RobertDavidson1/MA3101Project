@@ -1,12 +1,17 @@
 import { p } from '../parameters.js';
 
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+//////////////////////////////////////////
+//           Controls Folder            //
+
 //////////////////////////////////////////
 //           Controls Folder            //
 //////////////////////////////////////////
 export function createControlsFolder(pane) {
     const ControlsFolder = pane.addFolder({
         title: 'Controls',
-        expanded: true,
+        expanded: false,
     });
 
     ////////////////////////////////
@@ -17,12 +22,18 @@ export function createControlsFolder(pane) {
         label: 'h (plane height)',
         min: -0.99,
         max: 0.99,
-        step: 0.1,
+        step: 0.01,
     }).on('change', (ev) => {
-        // Update plane position
-        const planeElement = manager.getElement('plane');
-        if (planeElement) {
-            planeElement.position.z = ev.value;
+        const snapThreshold = 0.075; 
+        if(Math.abs(ev.value) < snapThreshold) {
+            p.planeHeight = 0; 
+            ev.value = 0; 
+            pane.refresh(); 
+        }
+
+
+        if (manager.getElement('plane')?.visible) {
+            manager.updateElement('plane', createPlane(ev.value, p.showPlane))
         }
 
         // Only update elements if they're visible - avoids unnecessary re-rendering
@@ -96,7 +107,7 @@ export function createControlsFolder(pane) {
         label: 't (angle around circle)',
         min: 0.0,
         max: 4 * Math.PI,
-        step: 0.01,
+        step: 0.001,
     }).on('change', (ev) => {
         if (manager.getElement('p_t')?.visible) {
             manager.updateElement(
@@ -166,7 +177,8 @@ export function createControlsFolder(pane) {
         title: 'Snap to XY Plane',
     }).on('click', () => {
         // Look straight down Z-axis
-        camera.position.set(0, 0, 5);
+        controls.target.set(0,0,0);
+        camera.position.set(0, 0, isMobile? 6 : 5);
         camera.lookAt(0, 0, 0);
         controls.update();
     });
@@ -175,6 +187,7 @@ export function createControlsFolder(pane) {
         title: 'Snap to XZ Plane',
     }).on('click', () => {
         // Look along Y-axis
+        controls.target.set(0,0,0);
         camera.position.set(0, 5, 0);
         camera.lookAt(0, 0, 0);
         controls.update();
@@ -184,6 +197,7 @@ export function createControlsFolder(pane) {
         title: 'Snap to YZ Plane',
     }).on('click', () => {
         // Look along X-axis
+        controls.target.set(0,0,0);
         camera.position.set(5, 0, 0);
         camera.lookAt(0, 0, 0);
         controls.update();
