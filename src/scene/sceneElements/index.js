@@ -13,6 +13,7 @@ export {
     createSinCompletion,
 } from './trigVectors.js';
 export { createSphereNormal, createAcclerationVector } from './vectors.js';
+export { createLabelSprite, setLabelsVisible } from './labels.js';
 
 // Import the functions so we can use them
 import { createAxes } from './axes.js';
@@ -29,6 +30,7 @@ import {
     createSinCompletion,
 } from './trigVectors.js';
 import { createSphereNormal, createAcclerationVector } from './vectors.js';
+import { createLabelSprite, setLabelsVisible } from './labels.js';
 
 // Attach to window object
 window.createAxes = createAxes;
@@ -46,3 +48,5 @@ window.createCosineCompletion = createCosineCompletion;
 window.createSinCompletion = createSinCompletion;
 window.createSphereNormal = createSphereNormal;
 window.createAcclerationVector = createAcclerationVector;
+window.createLabelSprite = createLabelSprite;
+window.setLabelsVisible = setLabelsVisible;
