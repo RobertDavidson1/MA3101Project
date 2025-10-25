@@ -10,7 +10,7 @@ export function createSphere(visible) {
         color: getColor('--neutral-600'),
         wireframe: true,
         transparent: true,
-        opacity: 0.1,
+        opacity: 0.3,
     });
 
     // Take the geometry and material and form a mesh
@@ -24,6 +24,8 @@ export function createSphere(visible) {
 }
 
 export function createSphereCenter(visible) {
+
+    
     const circumferencePointGeometry = new THREE.SphereGeometry(
         0.025, // radius
         32, // width segments
