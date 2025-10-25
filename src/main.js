@@ -92,6 +92,8 @@ const animationDuration = 2500; // 2 seconds
 const startTime = Date.now();
 let animationComplete = false;
 
+
+// Code from https://easings.net/#easeInOutExpo
 function easeInOutExpo(x) {
     if (x === 0) return 0;
     if (x === 1) return 1;
