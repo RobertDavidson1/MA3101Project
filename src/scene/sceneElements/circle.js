@@ -1,5 +1,7 @@
 export function createCircle(planeHeight, visibile) {
-    const segments = 32;
+    const color = getColor(planeHeight === 0 ? '--green' : '--neutral-100');
+    
+    const segments = 128;
     const points = [];
     for (let k = 0; k < segments; k++) {
         const t = (k / segments) * 2 * Math.PI;
@@ -8,7 +10,7 @@ export function createCircle(planeHeight, visibile) {
     }
     const geometry = new THREE.BufferGeometry().setFromPoints(points);
     const material = new THREE.LineBasicMaterial({
-        color: getColor('--gray-50'),
+        color: color,
     });
     const circle = new THREE.LineLoop(geometry, material);
 
