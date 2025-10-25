@@ -26,7 +26,7 @@ export function createStars(starCount) {
 
     // Material for the stars
     const starMaterial = new THREE.PointsMaterial();
-    starMaterial.color = new THREE.Color(getColor('--gray-200'));
+    starMaterial.color = new THREE.Color(getColor('--neutral-400'));
     starMaterial.size = 0.1;
     starMaterial.sizeAttenuation = true;
     starMaterial.transparent = true;
